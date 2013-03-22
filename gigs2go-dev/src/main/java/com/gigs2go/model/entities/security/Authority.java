@@ -9,13 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.apache.log4j.Logger;
+
+import com.gigs2go.model.entities.Artist;
 
 @Entity
 @Table( name = "authorities" )
 // @org.hibernate.annotations.Table(appliesTo="authorities", indexes = {
 // @Index(name="authorities_idx_1", columnNames={"username", "authority"})})
 public class Authority {
+    @Transient
+    private Logger log = Logger.getLogger( Artist.class );
+
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;

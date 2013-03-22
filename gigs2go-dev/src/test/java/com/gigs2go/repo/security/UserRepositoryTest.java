@@ -1,4 +1,4 @@
-package com.gigs2go.repos.security;
+package com.gigs2go.repo.security;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,15 +15,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gigs2go.model.entities.security.User;
-import com.gigs2go.model.repos.security.UserRepository;
-import com.gigs2go.repos.AbstractRepoTest;
+import com.gigs2go.model.repo.security.UserRepository;
+import com.gigs2go.repo.AbstractRepoTest;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )
 @Transactional
 public class UserRepositoryTest extends AbstractRepoTest {
 
-    private Logger logger = Logger.getLogger( UserRepositoryTest.class );
+    private Logger log = Logger.getLogger( UserRepositoryTest.class );
 
     @Autowired
     private UserRepository repo;
@@ -36,7 +36,7 @@ public class UserRepositoryTest extends AbstractRepoTest {
     @Rollback
     @Test
     public void testSaveUser () {
-        logger.debug( "Creating user" );
+        log.debug( "Creating user" );
         User user = new User();
         user.setUsername( "fred" );
         user.setPassword( "password" );
@@ -50,7 +50,7 @@ public class UserRepositoryTest extends AbstractRepoTest {
 
     @Test
     public void testFindUserByUsername () {
-        logger.debug( "Finding user" );
+        log.debug( "Finding user" );
         List<User> users = repo.findByUsername( "tim" );
         assertNotNull( users );
         assertEquals( 1, users.size() );

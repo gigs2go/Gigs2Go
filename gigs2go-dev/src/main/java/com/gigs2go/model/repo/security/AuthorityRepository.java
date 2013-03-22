@@ -1,4 +1,4 @@
-package com.gigs2go.model.repos.security;
+package com.gigs2go.model.repo.security;
 
 import java.util.List;
 

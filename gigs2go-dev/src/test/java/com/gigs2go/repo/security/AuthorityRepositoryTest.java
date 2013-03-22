@@ -1,4 +1,4 @@
-package com.gigs2go.repos.security;
+package com.gigs2go.repo.security;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,16 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gigs2go.model.entities.security.Authority;
 import com.gigs2go.model.entities.security.User;
-import com.gigs2go.model.repos.security.AuthorityRepository;
-import com.gigs2go.model.repos.security.UserRepository;
-import com.gigs2go.repos.AbstractRepoTest;
+import com.gigs2go.model.repo.security.AuthorityRepository;
+import com.gigs2go.model.repo.security.UserRepository;
+import com.gigs2go.repo.AbstractRepoTest;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )
 @Transactional
 public class AuthorityRepositoryTest extends AbstractRepoTest {
 
-    private Logger logger = Logger.getLogger( AuthorityRepositoryTest.class );
+    private Logger log = Logger.getLogger( AuthorityRepositoryTest.class );
 
     @Autowired
     private AuthorityRepository repo;
@@ -41,12 +41,12 @@ public class AuthorityRepositoryTest extends AbstractRepoTest {
     @Rollback
     @Test
     public void testSaveAuthority () {
-        logger.debug( "Creating user" );
+        log.debug( "Creating user" );
         User user = new User();
         user.setUsername( "fred" );
         user.setPassword( "password" );
         user = userRepo.save( user );
-        logger.debug( "Creating Authority" );
+        log.debug( "Creating Authority" );
         Authority authority = new Authority();
         authority.setUser( user );
         authority.setAuthority( "ROLE_ADMIN" );
@@ -59,7 +59,7 @@ public class AuthorityRepositoryTest extends AbstractRepoTest {
 
     @Test
     public void testFindByUsername () {
-        logger.debug( "Finding authorities" );
+        log.debug( "Finding authorities" );
         List<Authority> authorities = repo.findByUserUsername( "tim" );
         assertNotNull( authorities );
         assertEquals( 2, authorities.size() );
