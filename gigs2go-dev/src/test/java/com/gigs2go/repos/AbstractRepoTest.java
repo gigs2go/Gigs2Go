@@ -5,10 +5,10 @@ import org.springframework.test.context.transaction.BeforeTransaction;
 
 public abstract class AbstractRepoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-	@BeforeTransaction
-	public void setupData() throws Exception {
-		if (countRowsInTable("users") == 0) {
-			executeSqlScript("classpath:security.sql", false);
-		}
-	}
+    @BeforeTransaction
+    public void setupData () throws Exception {
+        if ( countRowsInTable( "users" ) == 0 ) {
+            executeSqlScript( "classpath:security.sql", false );
+        }
+    }
 }

@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.gigs2go.model.entities.security.User;
 
 public interface UserRepository extends CrudRepository<User, String>, QueryDslPredicateExecutor<User> {
-	List<User> findByUsername(String username);
+    List<User> findByUsername ( String username );
 }

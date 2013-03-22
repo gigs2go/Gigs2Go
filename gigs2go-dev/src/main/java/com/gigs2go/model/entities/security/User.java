@@ -16,73 +16,77 @@ import javax.validation.constraints.NotNull;
 import org.apache.log4j.Logger;
 
 @Entity
-@Table(name="users"/*, uniqueConstraints = {@UniqueConstraint(columnNames={"username"})}*/)
+@Table( name = "users"/*
+                       * , uniqueConstraints =
+                       * {@UniqueConstraint(columnNames={"username"})}
+                       */)
 public class User {
-	@Transient
-	private Logger log = Logger.getLogger(User.class);
+    @Transient
+    private Logger log = Logger.getLogger( User.class );
 
-	@Id
-	@Column(updatable=false, nullable=false, length=50)
+    @Id
+    @Column( updatable = false, nullable = false, length = 50 )
     private String username;
-	
-	@Column(updatable=false, nullable=false, length=50)
-	@NotNull
+
+    @Column( updatable = false, nullable = false, length = 50 )
+    @NotNull
     private String password;
-	
-	@NotNull
+
+    @NotNull
     private Boolean enabled = Boolean.TRUE;
-	
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,fetch = FetchType.EAGER)
-	private Set<Authority> authorities;
-	
-	@Transient // TODO - Refactor
-	public String[] getRoles() {
-		return Roles.ROLES;
-	}
 
-	public void setRoles(String[] roles) {
-		log.debug("Setting roles - ");
-		this.authorities = new HashSet<Authority>();
-		Authority authority = null;
-		for ( String role : roles ) {
-			log.debug("Role : " + role);
-			authority = new Authority();
-			authority.setUser( this );
-			authority.setAuthority(role);
-			authorities.add(authority);
-		}
-	}
+    @OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private Set<Authority> authorities;
 
-	public String getUsername() {
-		return username;
-	}
+    @Transient
+    // TODO - Refactor
+    public String[] getRoles () {
+        return Roles.ROLES;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setRoles ( String[] roles ) {
+        log.debug( "Setting roles - " );
+        this.authorities = new HashSet<Authority>();
+        Authority authority = null;
+        for ( String role : roles ) {
+            log.debug( "Role : " + role );
+            authority = new Authority();
+            authority.setUser( this );
+            authority.setAuthority( role );
+            authorities.add( authority );
+        }
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername () {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername ( String username ) {
+        this.username = username;
+    }
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    public String getPassword () {
+        return password;
+    }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setPassword ( String password ) {
+        this.password = password;
+    }
 
-	public Set<Authority> getAuthorities() {
-		return authorities;
-	}
+    public Boolean getEnabled () {
+        return enabled;
+    }
 
-	public void setAuthorities(Set<Authority> authorities) {
-		this.authorities = authorities;
-	}
+    public void setEnabled ( Boolean enabled ) {
+        this.enabled = enabled;
+    }
+
+    public Set<Authority> getAuthorities () {
+        return authorities;
+    }
+
+    public void setAuthorities ( Set<Authority> authorities ) {
+        this.authorities = authorities;
+    }
 
 }

@@ -18,45 +18,44 @@ import com.gigs2go.model.entities.security.User;
 import com.gigs2go.model.repos.security.UserRepository;
 import com.gigs2go.repos.AbstractRepoTest;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = "classpath:config/repo.xml")
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( value = "classpath:config/repo.xml" )
 @Transactional
 public class UserRepositoryTest extends AbstractRepoTest {
 
-	private Logger logger = Logger
-			.getLogger(UserRepositoryTest.class);
+    private Logger logger = Logger.getLogger( UserRepositoryTest.class );
 
-	@Autowired
-	private UserRepository repo;
+    @Autowired
+    private UserRepository repo;
 
-	@Test
-	public void testInject() {
-		assertNotNull(repo);
-	}
+    @Test
+    public void testInject () {
+        assertNotNull( repo );
+    }
 
-	@Rollback
-	@Test
-	public void testSaveUser() {
-		logger.debug("Creating user");
-		User user = new User();
-		user.setUsername("fred"); 
-		user.setPassword("password");
-		user = repo.save(user);
-		user = null;
-		user = repo.findOne("fred");
-		assertNotNull(user);
-		assertEquals("fred", user.getUsername());
-		assertEquals("password", user.getPassword());
-	}
+    @Rollback
+    @Test
+    public void testSaveUser () {
+        logger.debug( "Creating user" );
+        User user = new User();
+        user.setUsername( "fred" );
+        user.setPassword( "password" );
+        user = repo.save( user );
+        user = null;
+        user = repo.findOne( "fred" );
+        assertNotNull( user );
+        assertEquals( "fred", user.getUsername() );
+        assertEquals( "password", user.getPassword() );
+    }
 
-	@Test
-	public void testFindUserByUsername() {
-		logger.debug("Finding user");
-		List<User> users = repo.findByUsername("tim");
-		assertNotNull(users);
-		assertEquals(1, users.size());
-		User user = users.get(0);
-		assertEquals("tim", user.getUsername());
-	}
+    @Test
+    public void testFindUserByUsername () {
+        logger.debug( "Finding user" );
+        List<User> users = repo.findByUsername( "tim" );
+        assertNotNull( users );
+        assertEquals( 1, users.size() );
+        User user = users.get( 0 );
+        assertEquals( "tim", user.getUsername() );
+    }
 
 }

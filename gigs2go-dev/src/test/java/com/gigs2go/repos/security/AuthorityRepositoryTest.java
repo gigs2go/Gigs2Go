@@ -20,52 +20,51 @@ import com.gigs2go.model.repos.security.AuthorityRepository;
 import com.gigs2go.model.repos.security.UserRepository;
 import com.gigs2go.repos.AbstractRepoTest;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = "classpath:config/repo.xml")
+@RunWith( SpringJUnit4ClassRunner.class )
+@ContextConfiguration( value = "classpath:config/repo.xml" )
 @Transactional
 public class AuthorityRepositoryTest extends AbstractRepoTest {
 
-	private Logger logger = Logger
-			.getLogger(AuthorityRepositoryTest.class);
+    private Logger logger = Logger.getLogger( AuthorityRepositoryTest.class );
 
-	@Autowired
-	private AuthorityRepository repo;
+    @Autowired
+    private AuthorityRepository repo;
 
-	@Autowired
-	private UserRepository userRepo;
+    @Autowired
+    private UserRepository userRepo;
 
-	@Test
-	public void testInject() {
-		assertNotNull(repo);
-	}
+    @Test
+    public void testInject () {
+        assertNotNull( repo );
+    }
 
-	@Rollback
-	@Test
-	public void testSaveAuthority() {
-		logger.debug("Creating user");
-		User user = new User();
-		user.setUsername("fred"); 
-		user.setPassword("password");
-		user = userRepo.save(user);
-		logger.debug("Creating Authority");
-		Authority authority = new Authority();
-		authority.setUser(user);
-		authority.setAuthority("ROLE_ADMIN");
-		authority = repo.save( authority);
-		List<Authority> authorities = repo.findByUser(user);
-		assertNotNull(authorities);
-		assertEquals( 1, authorities.size());
-		assertEquals("fred", authorities.get(0).getUser().getUsername());
-	}
+    @Rollback
+    @Test
+    public void testSaveAuthority () {
+        logger.debug( "Creating user" );
+        User user = new User();
+        user.setUsername( "fred" );
+        user.setPassword( "password" );
+        user = userRepo.save( user );
+        logger.debug( "Creating Authority" );
+        Authority authority = new Authority();
+        authority.setUser( user );
+        authority.setAuthority( "ROLE_ADMIN" );
+        authority = repo.save( authority );
+        List<Authority> authorities = repo.findByUser( user );
+        assertNotNull( authorities );
+        assertEquals( 1, authorities.size() );
+        assertEquals( "fred", authorities.get( 0 ).getUser().getUsername() );
+    }
 
-	@Test
-	public void testFindByUsername() {
-		logger.debug("Finding authorities");
-		List<Authority> authorities = repo.findByUserUsername("tim");
-		assertNotNull(authorities);
-		assertEquals(2, authorities.size());
-		Authority authority = authorities.get(0);
-		assertEquals("tim", authority.getUser().getUsername());
-	}
+    @Test
+    public void testFindByUsername () {
+        logger.debug( "Finding authorities" );
+        List<Authority> authorities = repo.findByUserUsername( "tim" );
+        assertNotNull( authorities );
+        assertEquals( 2, authorities.size() );
+        Authority authority = authorities.get( 0 );
+        assertEquals( "tim", authority.getUser().getUsername() );
+    }
 
 }

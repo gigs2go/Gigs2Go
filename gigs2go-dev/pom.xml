@@ -7,8 +7,9 @@
 	<packaging>war</packaging>
 	<name>gigs2go</name>
 
-	<!-- As far as possible, and for clarity, the versions of things are handled here -->
-    <!-- Google apis need to be brought into the fold at the moment! -->
+	<!-- As far as possible, and for clarity, the versions of things are handled 
+		here -->
+	<!-- Google apis need to be brought into the fold at the moment! -->
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework.version>3.2.2.RELEASE</org.springframework.version>
@@ -35,7 +36,8 @@
 	</properties>
 
 	<dependencies>
-		<!-- Jackson - used in Spring and Google, so included here to get the latest/consistent version-->
+		<!-- Jackson - used in Spring and Google, so included here to get the latest/consistent 
+			version -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -43,7 +45,7 @@
 		</dependency>
 
 
-		<!-- Spring : TODO - refactor (there is a complex set of interdependancies)-->
+		<!-- Spring : TODO - refactor (there is a complex set of interdependancies) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
