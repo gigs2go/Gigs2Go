@@ -1,4 +1,4 @@
-package com.gigs2go.repo.security;
+package com.gigs2go.model.repos.security;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gigs2go.model.entities.security.User;
-import com.gigs2go.model.repo.security.UserRepository;
-import com.gigs2go.repo.AbstractRepoTest;
+import com.gigs2go.model.repos.AbstractRepoTest;
+import com.gigs2go.model.repos.security.UserRepository;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )

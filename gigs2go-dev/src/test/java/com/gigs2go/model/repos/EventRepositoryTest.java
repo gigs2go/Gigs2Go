@@ -1,4 +1,4 @@
-package com.gigs2go.repo;
+package com.gigs2go.model.repos;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.entities.Event;
 import com.gigs2go.model.entities.Venue;
-import com.gigs2go.model.repo.ArtistRepository;
-import com.gigs2go.model.repo.EventRepository;
-import com.gigs2go.model.repo.VenueRepository;
+import com.gigs2go.test.Utils;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )
@@ -69,8 +67,20 @@ public class EventRepositoryTest extends AbstractRepoTest {
     public void testFindByDate () throws ParseException {
         List<Event> events = repo.findByDayt( new SimpleDateFormat( "yyyy-MM-dd" ).parse( "2013-03-28" ) );
         assertNotNull( events );
-        assertEquals( 1, events.size() );
-        ;
+        assertEquals( 3, events.size() );
+        Event event = events.get( 0 );
+        assertEquals( "testartist1", event.getArtist().getName() );
+        assertEquals( "testvenue1", event.getVenue().getName() );
+
+    }
+
+    @Test
+    public void testFindByDateBetween () throws ParseException {
+        Date from = Utils.getDate( "2013-03-25" );
+        Date to = Utils.getDate( "2013-03-27" );
+        List<Event> events = repo.findByDaytBetween( from, to );
+        assertNotNull( events );
+        assertEquals( 9, events.size() );
     }
 
 }

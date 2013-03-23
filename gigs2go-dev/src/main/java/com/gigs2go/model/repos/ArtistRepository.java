@@ -1,4 +1,4 @@
-package com.gigs2go.model.repo;
+package com.gigs2go.model.repos;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import com.gigs2go.model.entities.Artist;
 public interface ArtistRepository extends CrudRepository<Artist, Long>, QueryDslPredicateExecutor<Artist> {
     List<Artist> findByName ( String name );
 
-    List<Artist> findByEmail ( String email );
+    List<Artist> findByEmailValue ( String email );
 }

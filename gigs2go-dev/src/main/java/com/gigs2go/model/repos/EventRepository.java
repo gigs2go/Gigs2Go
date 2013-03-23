@@ -1,4 +1,4 @@
-package com.gigs2go.model.repo;
+package com.gigs2go.model.repos;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +12,8 @@ import com.gigs2go.model.entities.Venue;
 
 public interface EventRepository extends CrudRepository<Event, Long>, QueryDslPredicateExecutor<Event> {
     List<Event> findByDayt ( Date date );
+
+    List<Event> findByDaytBetween ( Date from, Date to );
 
     List<Event> findByArtist ( Artist artist );
 

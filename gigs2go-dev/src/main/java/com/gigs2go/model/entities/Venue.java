@@ -2,6 +2,9 @@ package com.gigs2go.model.entities;
 
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +27,13 @@ public class Venue {
     private Long id;
 
     private String name;
-    private String email;
+
+    @Embedded
+    @AttributeOverrides( { @AttributeOverride( name = "value", column = @Column( name = "email" ) ) } )
+    private Email email;
+
+    @Embedded
+    private Address address;
 
     @OneToMany
     private Set<Event> events;
@@ -43,9 +52,6 @@ public class Venue {
     public void setEvents ( Set<Event> events ) {
         this.events = events;
     }
-
-    @Embedded
-    private Address address;
 
     /**
      * @return the address
@@ -95,7 +101,7 @@ public class Venue {
     /**
      * @return the email
      */
-    public String getEmail () {
+    public Email getEmail () {
         return this.email;
     }
 
@@ -103,7 +109,7 @@ public class Venue {
      * @param email
      *            the email to set
      */
-    public void setEmail ( String email ) {
+    public void setEmail ( Email email ) {
         this.email = email;
     }
 

@@ -1,4 +1,4 @@
-package com.gigs2go.model.repo;
+package com.gigs2go.model.repos;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.gigs2go.model.entities.Venue;
 public interface VenueRepository extends CrudRepository<Venue, Long>, QueryDslPredicateExecutor<Venue> {
     List<Venue> findByName ( String name );
 
-    List<Venue> findByEmail ( String email );
+    List<Venue> findByEmailValue ( String email );
 
     List<Venue> findByAddressTown ( String town );
 }

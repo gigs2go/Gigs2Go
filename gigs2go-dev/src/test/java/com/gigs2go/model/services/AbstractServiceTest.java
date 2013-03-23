@@ -1,4 +1,4 @@
-package com.gigs2go.repo;
+package com.gigs2go.model.services;
 
 import javax.persistence.Transient;
 
@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.BeforeTransaction;
 
-public abstract class AbstractRepoTest extends AbstractTransactionalJUnit4SpringContextTests {
+public abstract class AbstractServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Transient
-    private Logger log = Logger.getLogger( AbstractRepoTest.class );
+    private Logger log = Logger.getLogger( AbstractServiceTest.class );
 
     @BeforeTransaction
     public void setupData () throws Exception {
