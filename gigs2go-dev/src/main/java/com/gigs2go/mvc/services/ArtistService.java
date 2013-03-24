@@ -12,6 +12,8 @@ import com.gigs2go.model.entities.Artist;
  * 
  */
 public interface ArtistService {
+    Artist getArtistById ( Long id );
+
     Artist getArtistByName ( String name );
 
     Artist getArtistByEmail ( String email );

@@ -12,6 +12,8 @@ import com.gigs2go.model.entities.Venue;
  * 
  */
 public interface VenueService {
+    Venue getVenueById ( Long id );
+
     List<Venue> getVenuesByName ( String name );
 
     List<Venue> getVenuesByTown ( String town );

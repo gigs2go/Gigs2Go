@@ -7,18 +7,18 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
-import com.gigs2go.model.entities.Artist;
-import com.gigs2go.mvc.services.ArtistService;
+import com.gigs2go.model.entities.Venue;
+import com.gigs2go.mvc.services.VenueService;
 
 /**
  * @author tim
  * 
  */
-public class StringIdToArtistConverter implements Converter<String, Artist> {
-    private Logger log = Logger.getLogger( StringIdToArtistConverter.class );
+public class StringIdToVenueConverter implements Converter<String, Venue> {
+    private Logger log = Logger.getLogger( StringIdToVenueConverter.class );
 
     @Autowired
-    ArtistService service;
+    VenueService service;
 
     /*
      * (non-Javadoc)
@@ -27,9 +27,9 @@ public class StringIdToArtistConverter implements Converter<String, Artist> {
      * org.springframework.core.convert.converter.Converter#convert(java.lang
      * .Object)
      */
-    public Artist convert ( String id ) {
-        Long artistId = Long.valueOf( id );
-        return service.getArtistById( artistId );
+    public Venue convert ( String id ) {
+        Long venueId = Long.valueOf( id );
+        return service.getVenueById( venueId );
     }
 
 }

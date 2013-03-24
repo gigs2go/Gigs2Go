@@ -94,4 +94,13 @@ public class ArtistServiceImpl implements ArtistService {
         return repo.save( artist );
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.gigs2go.mvc.services.ArtistService#getArtistById(java.lang.Long)
+     */
+    public Artist getArtistById ( Long id ) {
+        return repo.findOne( id );
+    }
+
 }

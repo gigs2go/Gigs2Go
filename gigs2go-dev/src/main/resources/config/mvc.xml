@@ -2,8 +2,7 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:task="http://www.springframework.org/schema/task" 
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -14,18 +13,11 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- annotation-driven conversion-service="conversionService">
-		<argument-resolvers>
-			<beans:bean
-				class="org.springframework.samples.mvc.data.custom.CustomArgumentResolver" />
-		</argument-resolvers>
-		<async-support default-timeout="3000">
-			<callable-interceptors>
-				<beans:bean
-					class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" />
-			</callable-interceptors>
-		</async-support>
-	</annotation-driven -->
+	<!-- annotation-driven conversion-service="conversionService"> <argument-resolvers> 
+		<beans:bean class="org.springframework.samples.mvc.data.custom.CustomArgumentResolver" 
+		/> </argument-resolvers> <async-support default-timeout="3000"> <callable-interceptors> 
+		<beans:bean class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" 
+		/> </callable-interceptors> </async-support> </annotation-driven -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources/ directory -->
@@ -33,13 +25,10 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<!-- beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean -->
+	<!-- beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jsp" /> </beans:bean -->
 
 	<beans:bean id="urlViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -48,21 +37,23 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<!-- Needed because we install custom converters and formatters -->
-	<!-- beans:bean id="conversionService"
+	<annotation-driven conversion-service="conversionService" />
+	<beans:bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<beans:property name="formatters">
-			<list>
-				<bean class="com.gigs2go.mvc.formatters.EmailFormatter" />
-			</list>
+			<beans:list>
+				<beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" />
+			</beans:list>
 		</beans:property>
 		<beans:property name="converters">
-			<list>
-				<bean class="com.gigs2go.mvc.formatters.StringIdToArtistConverter" />
-			</list>
+			<beans:list>
+				<beans:bean class="com.gigs2go.mvc.converters.StringIdToArtistConverter" />
+				<beans:bean class="com.gigs2go.mvc.converters.StringIdToVenueConverter" />
+			</beans:list>
 		</beans:property>
-	</beans:bean -->
+	</beans:bean>
 
 	<annotation-driven />
 

@@ -91,4 +91,13 @@ public class VenueServiceImpl implements VenueService {
         return repo.save( venue );
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.gigs2go.mvc.services.VenueService#getVenueById(java.lang.String)
+     */
+    public Venue getVenueById ( Long id ) {
+        return repo.findOne( id );
+    }
+
 }
