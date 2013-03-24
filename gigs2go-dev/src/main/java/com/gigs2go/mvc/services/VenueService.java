@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gigs2go.model.services;
+package com.gigs2go.mvc.services;
 
 import java.util.List;
 

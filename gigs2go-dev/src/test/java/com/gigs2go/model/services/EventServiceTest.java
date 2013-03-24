@@ -6,6 +6,8 @@ package com.gigs2go.model.services;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -20,6 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.entities.Event;
 import com.gigs2go.model.entities.Venue;
+import com.gigs2go.mvc.services.ArtistService;
+import com.gigs2go.mvc.services.EventService;
+import com.gigs2go.mvc.services.VenueService;
 import com.gigs2go.test.Utils;
 
 @RunWith( SpringJUnit4ClassRunner.class )
@@ -45,6 +50,13 @@ public class EventServiceTest extends AbstractServiceTest {
         assertNotNull( venueService );
     }
 
+    @Test
+    public void testGetEvents () {
+        List<Event> events = service.getEvents();
+        assertNotNull( events );
+        assertEquals( 15, events.size() );
+    }
+
     @Rollback
     @Test
     public void testSaveEvent () {
@@ -61,18 +73,53 @@ public class EventServiceTest extends AbstractServiceTest {
         event.setDayt( Utils.getDate( "2013-11-29" ) );
         event = service.save( event );
         assertNotNull( event );
+        List<Event> events = service.getEvents();
+        assertNotNull( events );
+        assertEquals( 16, events.size() );
     }
 
-    // @Test
-    // public void testGetVenuesByName1 () {
-    // List<Venue> venues = service.getVenuesByName( "testvenue2" );
-    // assertNotNull( venues );
-    // assertEquals( 1, venues.size() );
-    // assertEquals( "testvenue2", venues.get( 0 ).getName() );
-    // assertEquals( "testvenue2@gigs2go.com", venues.get( 0
-    // ).getEmail().getValue() );
-    //
-    // }
+    @Test
+    public void testGetEventsByDate () {
+        List<Event> events = service.getEventsByDate( Utils.getDate( "2013-03-27" ) );
+        assertNotNull( events );
+        assertEquals( 3, events.size() );
+        assertEquals( "testvenue1", events.get( 0 ).getVenue().getName() );
+        assertEquals( "testartist1", events.get( 0 ).getArtist().getName() );
+        assertEquals( "testvenue1", events.get( 1 ).getVenue().getName() );
+        assertEquals( "testartist2", events.get( 1 ).getArtist().getName() );
+        assertEquals( "testvenue1", events.get( 2 ).getVenue().getName() );
+        assertEquals( "testartist3", events.get( 2 ).getArtist().getName() );
+
+    }
+
+    @Test
+    public void testGetEventsByArtist () {
+        Artist artist = artistService.getArtistByName( "testartist1" );
+        assertNotNull( artist );
+        List<Event> events = service.getEventsByArtist( artist );
+        assertNotNull( events );
+        assertEquals( 5, events.size() );
+    }
+
+    @Test
+    public void testGetEventsByVenue () {
+        List<Venue> venues = venueService.getVenuesByName( "testvenue1" );
+        assertNotNull( venues );
+        assertEquals( 1, venues.size() );
+        List<Event> events = service.getEventsByVenue( venues.get( 0 ) );
+        assertNotNull( events );
+        assertEquals( 5, events.size() );
+    }
+
+    @Test
+    public void testGetEventsByDateBetween () throws ParseException {
+        Date from = Utils.getDate( "2013-03-25" );
+        Date to = Utils.getDate( "2013-03-27" );
+        List<Event> events = service.getEventsBetween( from, to );
+        assertNotNull( events );
+        assertEquals( 9, events.size() );
+    }
+
     //
     // @Test
     // public void testGetArtistByName2 () {
@@ -96,11 +143,5 @@ public class EventServiceTest extends AbstractServiceTest {
     // assertNull( venue );
     // }
     //
-    @Test
-    public void testgetEvents () {
-        List<Event> venues = service.getEvents();
-        assertNotNull( venues );
-        assertEquals( 15, venues.size() );
-    }
 
 }

@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.entities.Email;
+import com.gigs2go.mvc.services.ArtistService;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )
