@@ -30,6 +30,6 @@
 	
 	<context:component-scan base-package="com.gigs2go.model.services" />
 	
-	<jpa:repositories base-package="com.gigs2go.model.repos" />
+	<jpa:repositories base-package="com.gigs2go.model" />
 
 </beans>

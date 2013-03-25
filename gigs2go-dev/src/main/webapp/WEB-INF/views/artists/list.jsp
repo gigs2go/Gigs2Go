@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
-		<title>Gigs2Go Project</title>
+		<title>Spring-Data MVC Project</title>
 	</head>
 	<body>
 		<c:if test="${not empty artists}">

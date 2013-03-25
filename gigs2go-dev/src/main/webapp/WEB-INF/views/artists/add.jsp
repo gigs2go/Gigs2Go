@@ -10,8 +10,8 @@
 			<form:input path="name" /><form:errors cssStyle="margin-left: 0.5em; color: red; font-weight: bolder" path="name" />
 		</p>
 		<p>
-			<form:label path="email" cssErrorClass="error">E-Mail</form:label><br />
-			<form:input path="email"/><form:errors cssStyle="margin-left: 0.5em; color: red; font-weight: bolder" path="email" />
+			<form:label path="email.value" cssErrorClass="error">E-mail</form:label><br />
+			<form:input path="email.value" type="email"/><form:errors cssStyle="margin-left: 0.5em; color: red; font-weight: bolder" path="email.value" />
 		</p>
 		<p>
 			<form:button>Submit</form:button>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gigs2go.mvc.services;
+package com.gigs2go.model.services;
 
 import java.util.ArrayList;
 import java.util.Date;

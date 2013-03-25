@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gigs2go.model.entities.Venue;
-import com.gigs2go.mvc.services.VenueService;
+import com.gigs2go.model.services.VenueService;
 
 /**
  * @author tim

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gigs2go.model.entities.Artist;
-import com.gigs2go.mvc.services.ArtistService;
+import com.gigs2go.model.services.ArtistService;
 
 /**
  * @author tim
@@ -44,7 +44,7 @@ public class ArtistController {
     public String add ( ModelMap model ) {
 
         model.addAttribute( "artist", new Artist() );
-        return "artists/add";
+        return "/artists/add";
 
     }
 
@@ -52,14 +52,14 @@ public class ArtistController {
     public String create ( @Valid Artist artist, BindingResult result ) {
 
         if ( result.hasErrors() ) {
-            return "artists/add";
+            return "/artists/add";
         }
         service.save( artist );
         List<Artist> artists = service.getArtists();
 
         log.debug( "Got " + artists.size() + " artists" );
         result.getModel().put( "artists", artists );
-        return "redirect:list";
+        return "redirect:/artists/list";
 
     }
 

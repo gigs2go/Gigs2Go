@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
-		<title>Gigs2Go Project</title>
+		<title>Spring-Data MVC Project</title>
 	</head>
 	<body>
 		<c:if test="${not empty events}">
@@ -11,6 +11,8 @@
 				<tr>
 					<td>Artist</td>
 					<td>Venue</td>
+					<td>Town</td>
+					<td>Date</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,6 +20,8 @@
 					<tr>
 						<td>${event.artist.name}</td>
 						<td>${event.venue.name}</td>
+						<td>${event.venue.address.town}</td>
+						<td>${event.dayt}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

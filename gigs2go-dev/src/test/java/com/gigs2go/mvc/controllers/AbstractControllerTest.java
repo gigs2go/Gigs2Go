@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
  * 
  */
 @WebAppConfiguration
-@ContextConfiguration( { "classpath*:mvc.xml" } )
+@ContextConfiguration( { "classpath*:config/repo.xml", "classpath*:config/mvc.xml" } )
 public class AbstractControllerTest {
     private Logger log = Logger.getLogger( AbstractControllerTest.class );
 

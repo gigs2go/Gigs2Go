@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gigs2go.model.entities.Email;
 import com.gigs2go.model.entities.Venue;
-import com.gigs2go.mvc.services.VenueService;
+import com.gigs2go.model.services.VenueService;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )

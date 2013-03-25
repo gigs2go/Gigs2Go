@@ -44,7 +44,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<beans:property name="formatters">
 			<beans:list>
-				<beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" />
+				<!-- beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" / -->
 			</beans:list>
 		</beans:property>
 		<beans:property name="converters">

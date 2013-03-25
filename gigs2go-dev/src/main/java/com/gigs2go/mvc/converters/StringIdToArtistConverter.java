@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
 import com.gigs2go.model.entities.Artist;
-import com.gigs2go.mvc.services.ArtistService;
+import com.gigs2go.model.services.ArtistService;
 
 /**
  * @author tim

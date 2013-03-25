@@ -22,8 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
  * 
  */
 @RunWith( SpringJUnit4ClassRunner.class )
-public class ArtistControllerTest extends AbstractControllerTest {
-    private Logger log = Logger.getLogger( ArtistControllerTest.class );
+public class VenueControllerTest extends AbstractControllerTest {
+    private Logger log = Logger.getLogger( VenueControllerTest.class );
 
     @Autowired
     private WebApplicationContext wac;
@@ -36,14 +36,14 @@ public class ArtistControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void listArtists () throws Exception {
-        this.mockMvc.perform( get( "/artists/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
+    public void listVenues () throws Exception {
+        this.mockMvc.perform( get( "/venues/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
 
     }
 
     @Test
-    public void addArtist () throws Exception {
-        this.mockMvc.perform( get( "/artists/add" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
+    public void addVenue () throws Exception {
+        this.mockMvc.perform( get( "/venues/add" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
 
     }
 }

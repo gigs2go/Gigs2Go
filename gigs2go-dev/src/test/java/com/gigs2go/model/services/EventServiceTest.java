@@ -22,9 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.entities.Event;
 import com.gigs2go.model.entities.Venue;
-import com.gigs2go.mvc.services.ArtistService;
-import com.gigs2go.mvc.services.EventService;
-import com.gigs2go.mvc.services.VenueService;
+import com.gigs2go.model.services.ArtistService;
+import com.gigs2go.model.services.EventService;
+import com.gigs2go.model.services.VenueService;
 import com.gigs2go.test.Utils;
 
 @RunWith( SpringJUnit4ClassRunner.class )
