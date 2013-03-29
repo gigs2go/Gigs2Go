@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-	<head>
-		<title>Spring-Data MVC Project</title>
-	</head>
-	<body>
-		<c:if test="${not empty events}">
-		<table>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html lang="en">
+<jsp:include page="../fragments/header.jsp" />
+<body>
+	<jsp:include page="../fragments/bodyHeader.jsp" />
+	<c:if test="${not empty events}">
+		<table id="events_table">
 			<thead>
 				<tr>
 					<td>Artist</td>
@@ -26,9 +25,19 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		</c:if>
-		<c:if test="${empty events}">
-		<br /><span>Nothing to display.</span>
-		</c:if>
-	</body>
+	</c:if>
+	<c:if test="${empty events}">
+		<br />
+		<span>Nothing to display.</span>
+	</c:if>
+	<jsp:include page="../fragments/scriptsFooter.jsp" />
+		<script>
+			$(document).ready(function() {
+				$('#events_table').dataTable({
+					"sPaginationType" : "full_numbers"
+				});
+			});
+		</script>
+	<jsp:include page="../fragments/bodyFooter.jsp" />
+</body>
 </html>

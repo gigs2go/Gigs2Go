@@ -33,6 +33,9 @@
 		<querydsl.version>2.9.0</querydsl.version>
 		<com.google.apis.version>v3-rev8-1.13.2-beta</com.google.apis.version>
 		<codehaus.jackson.version>1.9.12</codehaus.jackson.version>
+        <webjars-bootstrap.version>2.3.1</webjars-bootstrap.version>
+        <webjars-jquery-ui.version>1.9.2</webjars-jquery-ui.version>
+        <webjars-jquery.version>1.9.1</webjars-jquery.version>
 	</properties>
 
 	<dependencies>
@@ -375,6 +378,22 @@
 			<version>${querydsl.version}</version>
 		</dependency>
 
+        <!-- Webjars (static dependencies distributed as JAR files) -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${webjars-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery-ui</artifactId>
+            <version>${webjars-jquery-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${webjars-jquery.version}</version>
+        </dependency>
 	</dependencies>
 
 	<repositories>

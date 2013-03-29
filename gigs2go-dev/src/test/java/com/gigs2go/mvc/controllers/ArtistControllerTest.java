@@ -4,6 +4,7 @@
 package com.gigs2go.mvc.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
@@ -37,13 +38,13 @@ public class ArtistControllerTest extends AbstractControllerTest {
 
     @Test
     public void listArtists () throws Exception {
-        this.mockMvc.perform( get( "/artists/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
+        this.mockMvc.perform( get( "/artists/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() ).andDo( print() );
 
     }
 
     @Test
     public void addArtist () throws Exception {
-        this.mockMvc.perform( get( "/artists/add" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
+        this.mockMvc.perform( get( "/artists/add" ).accept( MediaType.ALL ) ).andExpect( status().isOk() ).andDo( print() );
 
     }
 }

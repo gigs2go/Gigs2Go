@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
 
@@ -30,6 +31,7 @@ public class Venue {
 
     @Embedded
     @AttributeOverrides( { @AttributeOverride( name = "value", column = @Column( name = "email" ) ) } )
+    @NotNull
     private Email email;
 
     @Embedded

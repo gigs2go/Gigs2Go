@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table( name = "artists" )
@@ -26,10 +29,14 @@ public class Artist {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String name;
 
     @Embedded
     @AttributeOverrides( { @AttributeOverride( name = "value", column = @Column( name = "email" ) ) } )
+    @NotNull
     private Email email;
 
     @OneToMany

@@ -12,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.services.ArtistService;
+import com.gigs2go.mvc.validators.ArtistValidator;
 
 /**
  * @author tim
@@ -29,6 +32,11 @@ public class ArtistController {
 
     @Autowired
     private ArtistService service;
+
+    @InitBinder
+    protected void initBinder ( WebDataBinder binder ) {
+        binder.setValidator( new ArtistValidator() );
+    }
 
     @RequestMapping( value = "/list", method = RequestMethod.GET )
     public String list ( ModelMap model ) {

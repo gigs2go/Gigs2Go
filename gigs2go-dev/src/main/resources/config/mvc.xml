@@ -10,6 +10,8 @@
 ">
 
 
+	<context:component-scan base-package="com.gigs2go.mvc" />
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -23,13 +25,30 @@
 		up static resources in the ${webappRoot}/resources/ directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<!-- Application Message Bundle -->
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basename" value="classpath:messages/messages" />
+		<beans:property name="defaultEncoding" value="UTF-8"/>
+		<beans:property name="cacheSeconds" value="0" />
+	</beans:bean>
+
+	<!-- Configures Handler Interceptors -->
+	<interceptors>
+		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. 
+			/?locale=de -->
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang" />
+		</beans:bean>
+	</interceptors>
+
+	<!-- Saves a locale change using a cookie -->
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<!-- beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
-		/> <beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
-		name="suffix" value=".jsp" /> </beans:bean -->
-
 	<beans:bean id="urlViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="viewClass"
@@ -44,7 +63,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<beans:property name="formatters">
 			<beans:list>
-				<!-- beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" / -->
+				<beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" />
 			</beans:list>
 		</beans:property>
 		<beans:property name="converters">
@@ -59,8 +78,6 @@
 
 	<!-- Maps '/' requests to the 'index' view -->
 	<view-controller path="/" view-name="index" />
-
-	<context:component-scan base-package="com.gigs2go.mvc" />
 
 </beans:beans>
 	

@@ -1,7 +1,12 @@
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<html lang="en">
+<jsp:include page="../fragments/header.jsp"/>
+<body>
+<jsp:include page="../fragments/bodyHeader.jsp"/>
 <form:form modelAttribute="artist" action="add" method="post">
 	<fieldset>
 		<legend>Add Artist</legend>
@@ -18,3 +23,6 @@
 		</p>
 	</fieldset>
 </form:form>
+<jsp:include page="../fragments/scriptsFooter.jsp"/>
+<jsp:include page="../fragments/bodyFooter.jsp"/>
+</body>
