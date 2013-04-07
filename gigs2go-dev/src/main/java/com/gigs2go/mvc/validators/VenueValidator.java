@@ -3,29 +3,26 @@
  */
 package com.gigs2go.mvc.validators;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.gigs2go.model.entities.Artist;
-import com.gigs2go.model.repos.ArtistRepository;
+import com.gigs2go.model.entities.Venue;
 
 /**
  * @author tim
  * 
  */
 @Component
-public class ArtistValidator implements Validator {
-    private Logger log = Logger.getLogger( ArtistValidator.class );
+public class VenueValidator implements Validator {
 
     @Autowired
     private EmailValidator emailValidator;
 
     @Autowired
-    private ArtistRepository repo;
+    private AddressValidator addressValidator;
 
     /*
      * (non-Javadoc)
@@ -33,7 +30,7 @@ public class ArtistValidator implements Validator {
      * @see org.springframework.validation.Validator#supports(java.lang.Class)
      */
     public boolean supports ( Class<?> clazz ) {
-        return Artist.class.equals( clazz );
+        return Venue.class.equals( clazz );
     }
 
     /*
@@ -44,15 +41,16 @@ public class ArtistValidator implements Validator {
      */
     public void validate ( Object target, Errors errors ) {
         ValidationUtils.rejectIfEmptyOrWhitespace( errors, "name", "field.required" );
-        ValidationUtils.rejectIfEmptyOrWhitespace( errors, "email.value", "field.required" );
-        Artist artist = (Artist)target;
-        log.debug( "Checking for Artist with name " + artist.getName() );
-        if ( repo.findByName( artist.getName() ).size() > 0 ) {
-            errors.rejectValue( "name", "artist.name.exists" );
-        }
+        Venue venue = (Venue)target;
         try {
             errors.pushNestedPath( "email" );
-            ValidationUtils.invokeValidator( this.emailValidator, artist.getEmail(), errors );
+            ValidationUtils.invokeValidator( this.emailValidator, venue.getEmail(), errors );
+        } finally {
+            errors.popNestedPath();
+        }
+        try {
+            errors.pushNestedPath( "address" );
+            ValidationUtils.invokeValidator( this.addressValidator, venue.getAddress(), errors );
         } finally {
             errors.popNestedPath();
         }

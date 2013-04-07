@@ -29,6 +29,14 @@
 /*
  * Gigs2go styling
  */
+ /* Override Bootstrap (width 220px) - might have to 'refine' this to just be 
+    for the datatables 'per page' select box */
+    /*
+select {
+  width: 60px;
+}
+*/
+ 
 table.artists {
     clear: both;
 }
@@ -45,43 +53,42 @@ div.dataTables_wrapper:after {
 html[xmlns] .dataTables_wrapper { display: block; }
 * html .dataTables_wrapper { height: 1%; }
 
-table.artists {
-    width: 100%;
+table.gigs2goList {
+	width: 601px;   /* width: 100%; */
     clear: both;
 }
  
-table.artists td,
-table.artists th {
+table.gigs2goList td,
+table.gigs2goList th {
     padding: 5px;
     border: 1px solid #fff;
 }
-
 /* Header cells */
-table.artists thead th {
+table.gigs2goList thead th {
     text-align: center;
     background: #66a9bd;
 }
 /* Body cells */
-table.artists tbody th {
+table.gigs2goList tbody th {
     text-align: left;
     background: #91c5d4;
 }
      
-table.artists tbody td {
+table.gigs2goList tbody td {
     text-align: center;
     background: #d5eaf0;
 }
          
-table.artists tbody tr.odd td {
+table.gigs2goList tbody tr.odd td {
     background: #bcd9e1;
 }
-/* Footer cells */ 
-table.artists tfoot th {
+/* Footer cells */
+table.gigs2goList tfoot th {
     background: #b0cc7f;
     text-align: left;
 }
      
-table.artists tfoot td {
+table.gigs2goList tfoot td {
     background: #d7e1c5;
     text-align: center;
     font-weight: bold;
@@ -91,15 +98,15 @@ div.dataTables_wrapper {
     background-color: #719ba7;
 }
 
-table.artists thead th.sorting_asc {
+table.gigs2goList thead th.sorting_asc {
     background: #66A9BD url('images/sort_asc.png') no-repeat right center;
 }
  
-table.artists thead th.sorting_desc {
+table.gigs2goList thead th.sorting_desc {
     background: #66A9BD url('images/sort_desc.png') no-repeat right center;
 }
  
-table.artists thead th.sorting {
+table.gigs2goList thead th.sorting {
     background: #66A9BD url('images/sort_both.png') no-repeat right center;
 }
 
@@ -142,7 +149,7 @@ div.dataTables_info {
 .container {
     padding-top: 10px;
     margin-left: 50px;
-    width: 700px;
+    width: 601px;
 }
 
 .form-horizontal {
@@ -241,7 +248,6 @@ table.display thead th div.DataTables_sort_wrapper span {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables features
  */
-
 .dataTables_wrapper {
 	position: relative;
 	clear: both;
@@ -261,7 +267,7 @@ table.display thead th div.DataTables_sort_wrapper span {
 }
 
 .dataTables_length {
-	width: 40%;
+	width: 50%;
 	float: left;
 }
 
@@ -282,10 +288,10 @@ table.display thead th div.DataTables_sort_wrapper span {
 }
 
 
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables display
  */
+
 table.display {
 	margin: 0 auto;
 	width: 100%;
@@ -310,7 +316,6 @@ table.display td {
 table.display td.center {
 	text-align: center;
 }
-
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

@@ -3,8 +3,10 @@
 <html lang="en">
 <jsp:include page="fragments/header.jsp" />
 <body>
-	<jsp:include page="fragments/bodyHeader.jsp" />
+	<div class="container">
+		<jsp:include page="fragments/bodyHeader.jsp" />
 
-	<jsp:include page="fragments/bodyFooter.jsp" />
+		<jsp:include page="fragments/bodyFooter.jsp" />
+	</div>
 </body>
 </html>

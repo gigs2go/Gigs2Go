@@ -7,9 +7,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,13 +16,9 @@ import org.apache.log4j.Logger;
 
 @Entity
 @Table( name = "venues" )
-public class Venue {
+public class Venue extends BaseEntity {
     @Transient
     private Logger log = Logger.getLogger( Venue.class );
-
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    private Long id;
 
     private String name;
 
@@ -68,21 +61,6 @@ public class Venue {
      */
     public void setAddress ( Address address ) {
         this.address = address;
-    }
-
-    /**
-     * @return the id
-     */
-    public Long getId () {
-        return this.id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId ( Long id ) {
-        this.id = id;
     }
 
     /**

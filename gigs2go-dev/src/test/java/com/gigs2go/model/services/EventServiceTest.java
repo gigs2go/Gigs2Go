@@ -7,10 +7,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gigs2go.model.entities.Artist;
 import com.gigs2go.model.entities.Event;
 import com.gigs2go.model.entities.Venue;
-import com.gigs2go.model.services.ArtistService;
-import com.gigs2go.model.services.EventService;
-import com.gigs2go.model.services.VenueService;
 import com.gigs2go.test.Utils;
 
 @RunWith( SpringJUnit4ClassRunner.class )
@@ -70,7 +67,7 @@ public class EventServiceTest extends AbstractServiceTest {
         Event event = new Event();
         event.setArtist( artist );
         event.setVenue( venue );
-        event.setDayt( Utils.getDate( "2013-11-29" ) );
+        event.setDate( Utils.getDate( "2013-11-29" ) );
         event = service.save( event );
         assertNotNull( event );
         List<Event> events = service.getEvents();
@@ -113,8 +110,8 @@ public class EventServiceTest extends AbstractServiceTest {
 
     @Test
     public void testGetEventsByDateBetween () throws ParseException {
-        Date from = Utils.getDate( "2013-03-25" );
-        Date to = Utils.getDate( "2013-03-27" );
+        LocalDate from = Utils.getDate( "2013-03-25" );
+        LocalDate to = Utils.getDate( "2013-03-27" );
         List<Event> events = service.getEventsBetween( from, to );
         assertNotNull( events );
         assertEquals( 9, events.size() );

@@ -21,6 +21,10 @@
 		<beans:bean class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" 
 		/> </callable-interceptors> </async-support> </annotation-driven -->
 
+	<!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies 
+		(Bootstrap, jQuery...) -->
+	<resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources/ directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -29,7 +33,7 @@
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<beans:property name="basename" value="classpath:messages/messages" />
-		<beans:property name="defaultEncoding" value="UTF-8"/>
+		<beans:property name="defaultEncoding" value="UTF-8" />
 		<beans:property name="cacheSeconds" value="0" />
 	</beans:bean>
 
@@ -47,24 +51,84 @@
 	<beans:bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
 
+	<!-- - The ContentNegotiatingViewResolver delegates to the InternalResourceViewResolver 
+		and BeanNameViewResolver, - and uses the requested media type (determined 
+		by the path extension) to pick a matching view. - When the media type is 
+		'text/html', it will delegate to the InternalResourceViewResolver's JstlView, 
+		- otherwise to the BeanNameViewResolver. -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<beans:property name="contentNegotiationManager" ref="cnManager" />
+
+		<beans:property name="viewResolvers">
+			<beans:list>
+				<!-- Default viewClass: JSTL view (JSP with html output) -->
+				<beans:bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<!-- Example: a logical view name of 'artists' is mapped to '/WEB-INF/views/artists.jsp' -->
+					<beans:property name="prefix" value="/WEB-INF/views/" />
+					<beans:property name="suffix" value=".jsp" />
+				</beans:bean>
+
+				<!-- Used here for 'xml' and 'atom' views -->
+				<beans:bean
+					class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Simple strategy: only path extension is taken into account -->
+	<beans:bean id="cnManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<beans:property name="favorPathExtension" value="true" />
+		<beans:property name="ignoreAcceptHeader" value="true" />
+		<beans:property name="defaultContentType" value="text/html" />
+
+		<beans:property name="mediaTypes">
+			<beans:map>
+				<beans:entry key="html" value="text/html" />
+				<beans:entry key="xml" value="application/xml" />
+				<beans:entry key="atom" value="application/atom+xml" />
+			</beans:map>
+		</beans:property>
+	</beans:bean>
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
-	<beans:bean id="urlViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
-	</beans:bean>
+	<!-- beans:bean id="urlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
+		name="suffix" value=".jsp" /> </beans:bean -->
 
 	<!-- Needed because we install custom converters and formatters -->
 	<annotation-driven conversion-service="conversionService" />
 	<beans:bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<beans:property name="registerDefaultFormatters" value="false" />
 		<beans:property name="formatters">
-			<beans:list>
-				<beans:bean class="com.gigs2go.mvc.formatters.EmailFormatter" />
-			</beans:list>
+			<beans:set>
+				<beans:bean
+					class="org.springframework.format.number.NumberFormatAnnotationFormatterFactory" />
+			</beans:set>
+		</beans:property>
+		<beans:property name="formatterRegistrars">
+			<beans:set>
+				<beans:bean
+					class="org.springframework.format.datetime.joda.JodaTimeFormatterRegistrar">
+					<beans:property name="dateFormatter">
+						<beans:bean
+							class="org.springframework.format.datetime.joda.DateTimeFormatterFactoryBean">
+							<beans:property name="pattern" value="yyyy/MM/dd (EEE, MMM dd)" />
+						</beans:bean>
+					</beans:property>
+					<beans:property name="timeFormatter">
+						<beans:bean
+							class="org.springframework.format.datetime.joda.DateTimeFormatterFactoryBean">
+							<beans:property name="pattern" value="hh:mm (kk:mm)" />
+						</beans:bean>
+					</beans:property>
+				</beans:bean>
+			</beans:set>
 		</beans:property>
 		<beans:property name="converters">
 			<beans:list>

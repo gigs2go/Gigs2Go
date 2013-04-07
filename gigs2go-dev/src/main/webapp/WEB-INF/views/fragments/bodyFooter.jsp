@@ -7,13 +7,13 @@
 					class="icon-home"></i>Home</a></li>
 			<li><a
 				href="<spring:url value="/artists/add" htmlEscape="true" />"><i
-					class="icon-search"></i>Add Artist</a></li>
+					class="icon-plus-sign"></i>Add Artist</a></li>
 			<li><a
 				href="<spring:url value="/venues/add" htmlEscape="true" />"><i
-					class="icon-th-list"></i>Add Venue</a></li>
+					class="icon-plus-sign"></i>Add Venue</a></li>
 			<li><a
 				href="<spring:url value="/events/add" htmlEscape="true" />"><i
-					class="icon-th-list"></i>Add Event</a></li>
+					class="icon-plus-sign"></i>Add Event</a></li>
 		</ul>
 	</div>
 </div>
@@ -23,8 +23,8 @@
 		<tr>
 			<td></td>
 			<td align="right"><img
-				src="<spring:url value="/resources/images/springsource-logo.png" htmlEscape="true" />"
-				alt="Sponsored by SpringSource" /></td>
+				src="<spring:url value="/resources/images/gigs2goLogo1.png" htmlEscape="true" />"
+				alt="Powered by Spring" /></td>
 		</tr>
 	</table>
 </div>

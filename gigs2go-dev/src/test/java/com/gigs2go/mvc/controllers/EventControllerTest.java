@@ -37,7 +37,7 @@ public class EventControllerTest extends AbstractControllerTest {
 
     @Test
     public void listVenues () throws Exception {
-        this.mockMvc.perform( get( "/venues/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
+        this.mockMvc.perform( get( "/venues" ).accept( MediaType.ALL ) ).andExpect( status().isOk() );
 
     }
 

@@ -10,13 +10,13 @@
 			<li><a href="<spring:url value="/" htmlEscape="true" />"><i
 					class="icon-home"></i>Home</a></li>
 			<li><a
-				href="<spring:url value="/artists/list" htmlEscape="true" />"><i
-					class="icon-search"></i>List Artists</a></li>
+				href="<spring:url value="/artists" htmlEscape="true" />"><i
+					class="icon-th-list"></i>List Artists</a></li>
 			<li><a
-				href="<spring:url value="/venues/list" htmlEscape="true" />"><i
+				href="<spring:url value="/venues" htmlEscape="true" />"><i
 					class="icon-th-list"></i>List Venues</a></li>
 			<li><a
-				href="<spring:url value="/events/list" htmlEscape="true" />"><i
+				href="<spring:url value="/events" htmlEscape="true" />"><i
 					class="icon-th-list"></i>List Events</a></li>
 		</ul>
 	</div>

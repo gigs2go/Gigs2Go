@@ -11,6 +11,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Email {
+    @org.hibernate.validator.constraints.Email( message = "{email.invalid}" )
     private String value;
 
     public Email() {

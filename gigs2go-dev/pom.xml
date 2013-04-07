@@ -27,15 +27,19 @@
 		<org.hibernate.version>4.1.4.Final</org.hibernate.version>
 		<org.hibernate.validator.version>4.1.0.Final</org.hibernate.validator.version>
 		<org.hibernate.api.version>1.0.1.Final</org.hibernate.api.version>
-		<jodatime.version>2.1</jodatime.version>
+		<!-- Replace (never use) Java Date/Calendar -->
+		<jodatime.version>2.2</jodatime.version>
+		<!-- Used to map JodaTime to DB-native DateTime -->
+		<usertype.version>3.0.0.GA</usertype.version>
 		<org.hsqldb.version>2.2.8</org.hsqldb.version>
 		<org.mysql.version>5.1.24</org.mysql.version>
 		<querydsl.version>2.9.0</querydsl.version>
 		<com.google.apis.version>v3-rev8-1.13.2-beta</com.google.apis.version>
 		<codehaus.jackson.version>1.9.12</codehaus.jackson.version>
-        <webjars-bootstrap.version>2.3.1</webjars-bootstrap.version>
-        <webjars-jquery-ui.version>1.9.2</webjars-jquery-ui.version>
-        <webjars-jquery.version>1.9.1</webjars-jquery.version>
+		<webjars-bootstrap.version>2.3.1</webjars-bootstrap.version>
+		<webjars-jquery-ui.version>1.9.2</webjars-jquery-ui.version>
+		<webjars-jquery.version>1.9.1</webjars-jquery.version>
+		<dandelion.datatables.version>0.8.10</dandelion.datatables.version>
 	</properties>
 
 	<dependencies>
@@ -267,6 +271,13 @@
 			</exclusions>
 		</dependency>
 
+		<!-- Dandelion -->
+		<dependency>
+			<groupId>com.github.dandelion</groupId>
+			<artifactId>datatables-jsp</artifactId>
+			<version>${dandelion.datatables.version}</version>
+		</dependency>
+
 
 		<!-- Testing -->
 		<dependency>
@@ -343,6 +354,15 @@
 			<version>${jodatime.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>${usertype.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>joda-time</groupId> <artifactId>joda-time-hibernate</artifactId> 
+			<version>${jodatime.hibernate.version}</version> </dependency> -->
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -378,22 +398,22 @@
 			<version>${querydsl.version}</version>
 		</dependency>
 
-        <!-- Webjars (static dependencies distributed as JAR files) -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>${webjars-bootstrap.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery-ui</artifactId>
-            <version>${webjars-jquery-ui.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>${webjars-jquery.version}</version>
-        </dependency>
+		<!-- Webjars (static dependencies distributed as JAR files) -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${webjars-bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>${webjars-jquery-ui.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${webjars-jquery.version}</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

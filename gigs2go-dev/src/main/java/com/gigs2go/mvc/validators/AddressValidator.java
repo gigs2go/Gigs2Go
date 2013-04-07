@@ -5,17 +5,16 @@ package com.gigs2go.mvc.validators;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.gigs2go.model.entities.Email;
+import com.gigs2go.model.entities.Address;
 
 /**
  * @author tim
  * 
  */
 @Component
-public class EmailValidator implements Validator {
+public class AddressValidator implements Validator {
 
     /*
      * (non-Javadoc)
@@ -23,7 +22,7 @@ public class EmailValidator implements Validator {
      * @see org.springframework.validation.Validator#supports(java.lang.Class)
      */
     public boolean supports ( Class<?> clazz ) {
-        return Email.class.equals( clazz );
+        return Address.class.equals( clazz );
     }
 
     /*
@@ -33,12 +32,11 @@ public class EmailValidator implements Validator {
      * org.springframework.validation.Errors)
      */
     public void validate ( Object target, Errors errors ) {
-        Email email = (Email)target;
-        String value = email.getValue();
-        ValidationUtils.rejectIfEmptyOrWhitespace( errors, "value", "field.required" );
+        Address address = (Address)target;
+        String town = address.getTown();
         // TODO - regexp
-        if ( !value.contains( "@" ) || value.contains( " " ) ) {
-            errors.rejectValue( "value", "email.invalid" );
+        if ( !town.equals( "Faversham" ) ) {
+            errors.rejectValue( "town", "town.invalid" );
         }
     }
 

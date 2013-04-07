@@ -4,10 +4,10 @@
 package com.gigs2go.model.services;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,8 +35,8 @@ public class EventServiceImpl implements EventService {
      * @see
      * com.gigs2go.model.services.EventService#getEventsByDate(java.util.Date)
      */
-    public List<Event> getEventsByDate ( Date date ) {
-        return repo.findByDayt( date );
+    public List<Event> getEventsByDate ( LocalDate date ) {
+        return repo.findByDate( date );
     }
 
     /*
@@ -46,8 +46,8 @@ public class EventServiceImpl implements EventService {
      * com.gigs2go.model.services.EventService#getEventsBetween(java.util.Date,
      * java.util.Date)
      */
-    public List<Event> getEventsBetween ( Date from, Date to ) {
-        return repo.findByDaytBetween( from, to );
+    public List<Event> getEventsBetween ( LocalDate from, LocalDate to ) {
+        return repo.findByDateBetween( from, to );
     }
 
     /*
@@ -95,6 +95,17 @@ public class EventServiceImpl implements EventService {
         for ( Event event : events ) {
             result.add( event );
         }
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.gigs2go.model.services.EventService#getEventById(java.lang.Long)
+     */
+    public Event getEventById ( Long eventId ) {
+        Event result = repo.findOne( eventId );
+
         return result;
     }
 

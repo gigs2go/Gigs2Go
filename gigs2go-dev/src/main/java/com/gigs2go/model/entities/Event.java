@@ -3,19 +3,19 @@
  */
 package com.gigs2go.model.entities;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.apache.log4j.Logger;
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
+//import org.hibernate.annotations.Type;
+//import org.joda.time.contrib.hibernate.PersistentDateTime;
 
 /**
  * @author tim
@@ -23,13 +23,9 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table( name = "events" )
-public class Event {
+public class Event extends BaseEntity {
     @Transient
     private Logger log = Logger.getLogger( Event.class );
-
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    private Long id;
 
     @ManyToOne
     private Artist artist;
@@ -37,37 +33,27 @@ public class Event {
     @ManyToOne
     private Venue venue;
 
-    @Temporal( value = TemporalType.DATE )
-    private Date dayt;
+    // @Temporal( value = TemporalType.DATE )
+    @DateTimeFormat( pattern = "yyyy/MM/dd (EEE, MMM dd)" )
+    @NotNull
+    // @Type( type = "org.joda.time.contrib.hibernate.PersistentDateTime" )
+    @Type( type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate" )
+    @Column( name = "dayt" )
+    private LocalDate date;
 
     /**
-     * @return the dayt
+     * @return the date
      */
-    public Date getDayt () {
-        return this.dayt;
+    public LocalDate getDate () {
+        return this.date;
     }
 
     /**
-     * @param dayt
-     *            the dayt to set
+     * @param date
+     *            the date to set
      */
-    public void setDayt ( Date dayt ) {
-        this.dayt = dayt;
-    }
-
-    /**
-     * @return the id
-     */
-    public Long getId () {
-        return this.id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId ( Long id ) {
-        this.id = id;
+    public void setDate ( LocalDate date ) {
+        this.date = date;
     }
 
     /**

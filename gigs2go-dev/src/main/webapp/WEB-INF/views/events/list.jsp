@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html lang="en">
 <jsp:include page="../fragments/header.jsp" />
 <body>
-	<jsp:include page="../fragments/bodyHeader.jsp" />
-	<c:if test="${not empty events}">
-		<table id="events_table">
+	<div class="container">
+		<jsp:include page="../fragments/bodyHeader.jsp" />
+		<table id="events_table" class="gigs2goList">
 			<thead>
 				<tr>
 					<td>Artist</td>
@@ -20,24 +22,24 @@
 						<td>${event.artist.name}</td>
 						<td>${event.venue.name}</td>
 						<td>${event.venue.address.town}</td>
-						<td>${event.dayt}</td>
+						<td><spring:eval expression="event.date" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-	</c:if>
-	<c:if test="${empty events}">
-		<br />
-		<span>Nothing to display.</span>
-	</c:if>
-	<jsp:include page="../fragments/scriptsFooter.jsp" />
 		<script>
 			$(document).ready(function() {
 				$('#events_table').dataTable({
-					"sPaginationType" : "full_numbers"
+					"sPaginationType" : "full_numbers",
+					"oLanguage" : {
+						"sLengthMenu" : "_MENU_ per page",
+						"sSearch" : "Filter : _INPUT_",
+						"sEmptyTable" : "No events found"
+					}
 				});
 			});
 		</script>
-	<jsp:include page="../fragments/bodyFooter.jsp" />
+		<jsp:include page="../fragments/bodyFooter.jsp" />
+	</div>
 </body>
 </html>

@@ -3,7 +3,10 @@
  */
 package com.gigs2go.mvc.validators;
 
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.gigs2go.model.entities.Event;
@@ -12,7 +15,9 @@ import com.gigs2go.model.entities.Event;
  * @author tim
  * 
  */
+@Component
 public class EventValidator implements Validator {
+    private Logger log = Logger.getLogger( EventValidator.class );
 
     /*
      * (non-Javadoc)
@@ -30,11 +35,21 @@ public class EventValidator implements Validator {
      * org.springframework.validation.Errors)
      */
     public void validate ( Object target, Errors errors ) {
-        // ValidationUtils.rejectIfEmptyOrWhitespace( errors, "name",
+        ValidationUtils.rejectIfEmptyOrWhitespace( errors, "date", "field.required" );
+        // ValidationUtils.rejectIfEmptyOrWhitespace( errors, "email.value",
         // "field.required" );
-        // ValidationUtils.rejectIfEmptyOrWhitespace( errors, "email.email",
-        // "field.required" );
-        // Artist artist = (Artist)target;
+        Event event = (Event)target;
+        log.debug( "Event date is " + event.getDate() );
+        // if ( repo.findByName( artist.getName() ).size() > 0 ) {
+        // errors.rejectValue( "name", "artist.name.exists" );
+        // }
+        // try {
+        // errors.pushNestedPath( "email" );
+        // ValidationUtils.invokeValidator( this.emailValidator,
+        // artist.getEmail(), errors );
+        // } finally {
+        // errors.popNestedPath();
+        // }
     }
 
 }

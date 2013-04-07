@@ -4,11 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class EventRepositoryTest extends AbstractRepoTest {
     @Autowired
     private VenueRepository venueRepo;
 
-    private Date now = new Date();
+    private LocalDate now = new LocalDate();
 
     @Test
     public void testeventInject () {
@@ -54,18 +53,18 @@ public class EventRepositoryTest extends AbstractRepoTest {
         Venue venue = venueRepo.findOne( 1L );
         event.setArtist( artist );
         event.setVenue( venue );
-        event.setDayt( now );
+        event.setDate( now );
         event = repo.save( event );
         event = repo.findOne( event.getId() );
         assertNotNull( event );
         assertEquals( artist, event.getArtist() );
         assertEquals( venue, event.getVenue() );
-        assertEquals( now, event.getDayt() );
+        assertEquals( now, event.getDate() );
     }
 
     @Test
     public void testFindByDate () throws ParseException {
-        List<Event> events = repo.findByDayt( new SimpleDateFormat( "yyyy-MM-dd" ).parse( "2013-03-28" ) );
+        List<Event> events = repo.findByDate( Utils.getDate( "2013-03-28" ) );
         assertNotNull( events );
         assertEquals( 3, events.size() );
         Event event = events.get( 0 );
@@ -76,9 +75,9 @@ public class EventRepositoryTest extends AbstractRepoTest {
 
     @Test
     public void testFindByDateBetween () throws ParseException {
-        Date from = Utils.getDate( "2013-03-25" );
-        Date to = Utils.getDate( "2013-03-27" );
-        List<Event> events = repo.findByDaytBetween( from, to );
+        LocalDate from = Utils.getDate( "2013-03-25" );
+        LocalDate to = Utils.getDate( "2013-03-27" );
+        List<Event> events = repo.findByDateBetween( from, to );
         assertNotNull( events );
         assertEquals( 9, events.size() );
     }

@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 @Embeddable
 public class Address {
     @Transient
-    private Logger log = Logger.getLogger( Artist.class );
+    private Logger log = Logger.getLogger( Address.class );
 
     private String town;
 

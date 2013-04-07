@@ -7,9 +7,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -21,13 +18,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table( name = "artists" )
-public class Artist {
+public class Artist extends BaseEntity {
     @Transient
     private Logger log = Logger.getLogger( Artist.class );
-
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    private Long id;
 
     @NotNull
     @NotEmpty
@@ -58,21 +51,6 @@ public class Artist {
     }
 
     /**
-     * @return the id
-     */
-    public Long getId () {
-        return this.id;
-    }
-
-    /**
-     * @param id
-     *            the id to set
-     */
-    public void setId ( Long id ) {
-        this.id = id;
-    }
-
-    /**
      * @return the name
      */
     public String getName () {
@@ -100,6 +78,16 @@ public class Artist {
      */
     public void setEmail ( Email email ) {
         this.email = email;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString () {
+        return "Artist [super=" + super.toString() + ", name=" + this.name + ", email=" + this.email + "]";
     }
 
 }

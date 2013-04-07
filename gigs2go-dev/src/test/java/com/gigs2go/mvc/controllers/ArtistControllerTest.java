@@ -38,7 +38,7 @@ public class ArtistControllerTest extends AbstractControllerTest {
 
     @Test
     public void listArtists () throws Exception {
-        this.mockMvc.perform( get( "/artists/list" ).accept( MediaType.ALL ) ).andExpect( status().isOk() ).andDo( print() );
+        this.mockMvc.perform( get( "/artists" ).accept( MediaType.ALL ) ).andExpect( status().isOk() ).andDo( print() );
 
     }
 
