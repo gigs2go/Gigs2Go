@@ -7,8 +7,7 @@
 <body>
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
-		<table id="artists_table" class="gigs2goList" cellpadding="0"
-			cellspacing="0" border="0" width="100%">
+		<table id="artists_table" class="gigs2goList">
 			<thead>
 				<tr>
 					<th>Artist Name</th>

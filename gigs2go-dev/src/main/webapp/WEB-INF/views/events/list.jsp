@@ -10,10 +10,10 @@
 		<table id="events_table" class="gigs2goList">
 			<thead>
 				<tr>
-					<td>Artist</td>
-					<td>Venue</td>
-					<td>Town</td>
-					<td>Date</td>
+					<th>Artist</th>
+					<th>Venue</th>
+					<th>Town</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 			<tbody>
