@@ -6,7 +6,8 @@ package com.gigs2go.model.entities;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author tim
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 @Embeddable
 public class Address {
     @Transient
-    private Logger log = Logger.getLogger( Address.class );
+    private Logger log = LoggerFactory.getLogger( Address.class );
 
     private String town;
 

@@ -3,7 +3,8 @@
  */
 package com.gigs2go.mvc.converters;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
@@ -15,7 +16,7 @@ import com.gigs2go.model.services.ArtistService;
  * 
  */
 public class StringIdToArtistConverter implements Converter<String, Artist> {
-    private Logger log = Logger.getLogger( StringIdToArtistConverter.class );
+    private Logger log = LoggerFactory.getLogger( StringIdToArtistConverter.class );
 
     @Autowired
     ArtistService service;

@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith( SpringJUnit4ClassRunner.class )
 public class EventControllerTest extends AbstractControllerTest {
-    private Logger log = Logger.getLogger( EventControllerTest.class );
+    private Logger log = LoggerFactory.getLogger( EventControllerTest.class );
 
     @Autowired
     private WebApplicationContext wac;

@@ -7,7 +7,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ import com.gigs2go.mvc.validators.EventValidator;
 @Controller
 // @RequestMapping( "/events" )
 public class EventController {
-    private Logger log = Logger.getLogger( EventController.class );
+    private Logger log = LoggerFactory.getLogger( EventController.class );
 
     @Autowired
     private EventService service;

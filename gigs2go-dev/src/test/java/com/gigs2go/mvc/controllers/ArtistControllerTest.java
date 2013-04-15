@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith( SpringJUnit4ClassRunner.class )
 public class ArtistControllerTest extends AbstractControllerTest {
-    private Logger log = Logger.getLogger( ArtistControllerTest.class );
+    private Logger log = LoggerFactory.getLogger( ArtistControllerTest.class );
 
     @Autowired
     private WebApplicationContext wac;

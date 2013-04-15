@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import com.gigs2go.model.entities.Email;
 @Transactional
 public class ArtistRepositoryTest extends AbstractRepoTest {
 
-    private Logger log = Logger.getLogger( ArtistRepositoryTest.class );
+    private Logger log = LoggerFactory.getLogger( ArtistRepositoryTest.class );
 
     @Autowired
     private ArtistRepository repo;

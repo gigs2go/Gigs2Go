@@ -12,7 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gigs2go.model.entities.Artist;
 
@@ -22,7 +23,7 @@ import com.gigs2go.model.entities.Artist;
 // @Index(name="authorities_idx_1", columnNames={"username", "authority"})})
 public class Authority {
     @Transient
-    private Logger log = Logger.getLogger( Artist.class );
+    private Logger log = LoggerFactory.getLogger( Artist.class );
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )

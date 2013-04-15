@@ -13,7 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 @Table( name = "users"/*
@@ -22,7 +23,7 @@ import org.apache.log4j.Logger;
                        */)
 public class User {
     @Transient
-    private Logger log = Logger.getLogger( User.class );
+    private Logger log = LoggerFactory.getLogger( User.class );
 
     @Id
     @Column( updatable = false, nullable = false, length = 50 )

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <Target>System.out</Target>
+    <encoder>
+      <pattern>%d{ABSOLUTE} %5p %c:%4.4L - %m%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="o.s" level="ERROR"/>
+  <logger name="org.springframework" level="ERROR"/>
+  <logger name="org.hibernate" level="ERROR"/>
+  <logger name="com.gigs2go" level="DEBUG"/>
+  <logger name="org.springframework.data" level="ERROR"/>
+  <root level="ERROR">
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>

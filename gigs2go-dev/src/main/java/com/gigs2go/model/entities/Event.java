@@ -10,7 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table( name = "events" )
 public class Event extends BaseEntity {
     @Transient
-    private Logger log = Logger.getLogger( Event.class );
+    private Logger log = LoggerFactory.getLogger( Event.class );
 
     @ManyToOne
     private Artist artist;

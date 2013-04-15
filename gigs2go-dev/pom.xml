@@ -18,6 +18,7 @@
 		<org.springrest.version>1.0.0.RELEASE</org.springrest.version>
 		<jpa.version>2.0.0</jpa.version>
 		<junit.version>4.10</junit.version>
+		<logback.version>1.0.11</logback.version>
 		<org.slf4j.version>1.7.1</org.slf4j.version>
 		<org.log4j.version>1.2.17</org.log4j.version>
 		<org.aspectj.version>1.6.10</org.aspectj.version>
@@ -49,6 +50,13 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${codehaus.jackson.version}</version>
+		</dependency>
+
+		<!-- Logback - included here to get the latest/consistent version -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 
 
@@ -88,6 +96,8 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-aop</artifactId>
 				</exclusion>
+				<!-- exclusion> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
+					</exclusion -->
 			</exclusions>
 		</dependency>
 
@@ -184,26 +194,25 @@
 		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client</artifactId>
-			<version>1.13.2-beta</version>
+			<version>1.14.1-beta</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.api-client</groupId>
-			<artifactId>google-api-client-java6</artifactId>
-			<version>1.13.2-beta</version>
-		</dependency>
+		<!-- dependency> <groupId>com.google.api-client</groupId> <artifactId>google-api-client-java6</artifactId> 
+			<version>1.13.2-beta</version> </dependency -->
 		<dependency>
 			<groupId>com.google.api-client</groupId>
 			<artifactId>google-api-client-servlet</artifactId>
-			<version>1.13.0-beta</version>
+			<version>1.14.1-beta</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.http-client</groupId>
 			<artifactId>google-http-client-jackson</artifactId>
-			<version>1.13.1-beta</version>
+			<version>1.14.1-beta</version>
 		</dependency>
-		<!-- Used 1.13.2 jar directly as can't find it on Mvn -->
-		<!-- dependency> <groupId>com.google.apis</groupId> <artifactId>google-api-services-blogger</artifactId> 
-			<version>v3-rev1-1.8.0-beta</version> </dependency -->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-blogger</artifactId>
+			<version>v3-rev9-1.14.1-beta</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-drive</artifactId>
@@ -211,7 +220,7 @@
 		</dependency>
 
 		<!-- Logging -->
-		<dependency>
+		<!-- dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j.version}</version>
@@ -233,7 +242,7 @@
 			<artifactId>log4j</artifactId>
 			<version>${org.log4j.version}</version>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency -->
 
 		<!-- Servlet -->
 		<dependency>

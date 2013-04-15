@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import com.gigs2go.model.repos.security.UserRepository;
 @Transactional
 public class AuthorityRepositoryTest extends AbstractRepoTest {
 
-    private Logger log = Logger.getLogger( AuthorityRepositoryTest.class );
+    private Logger log = LoggerFactory.getLogger( AuthorityRepositoryTest.class );
 
     @Autowired
     private AuthorityRepository repo;

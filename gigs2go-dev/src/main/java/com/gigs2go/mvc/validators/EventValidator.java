@@ -3,7 +3,8 @@
  */
 package com.gigs2go.mvc.validators;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -17,7 +18,7 @@ import com.gigs2go.model.entities.Event;
  */
 @Component
 public class EventValidator implements Validator {
-    private Logger log = Logger.getLogger( EventValidator.class );
+    private Logger log = LoggerFactory.getLogger( EventValidator.class );
 
     /*
      * (non-Javadoc)

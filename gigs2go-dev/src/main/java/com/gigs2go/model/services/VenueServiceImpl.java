@@ -6,7 +6,8 @@ package com.gigs2go.model.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import com.gigs2go.model.repos.VenueRepository;
 @Service
 @Transactional( readOnly = true )
 public class VenueServiceImpl implements VenueService {
-    private Logger log = Logger.getLogger( VenueServiceImpl.class );
+    private Logger log = LoggerFactory.getLogger( VenueServiceImpl.class );
 
     @Autowired
     VenueRepository repo;

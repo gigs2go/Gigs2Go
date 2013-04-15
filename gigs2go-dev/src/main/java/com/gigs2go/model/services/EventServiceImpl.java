@@ -6,7 +6,8 @@ package com.gigs2go.model.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ import com.gigs2go.model.repos.EventRepository;
 @Service
 @Transactional( readOnly = true )
 public class EventServiceImpl implements EventService {
-    private Logger log = Logger.getLogger( EventServiceImpl.class );
+    private Logger log = LoggerFactory.getLogger( EventServiceImpl.class );
 
     @Autowired
     EventRepository repo;

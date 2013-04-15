@@ -3,7 +3,8 @@
  */
 package com.gigs2go.mvc.validators;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -19,7 +20,7 @@ import com.gigs2go.model.repos.ArtistRepository;
  */
 @Component
 public class ArtistValidator implements Validator {
-    private Logger log = Logger.getLogger( ArtistValidator.class );
+    private Logger log = LoggerFactory.getLogger( ArtistValidator.class );
 
     @Autowired
     private EmailValidator emailValidator;

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 import java.text.ParseException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ import com.gigs2go.test.Utils;
 @Transactional
 public class EventServiceTest extends AbstractServiceTest {
 
-    private Logger log = Logger.getLogger( EventServiceTest.class );
+    private Logger log = LoggerFactory.getLogger( EventServiceTest.class );
 
     @Autowired
     private EventService service;

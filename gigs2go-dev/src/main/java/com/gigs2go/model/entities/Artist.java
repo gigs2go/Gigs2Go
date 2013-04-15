@@ -12,7 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -20,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table( name = "artists" )
 public class Artist extends BaseEntity {
     @Transient
-    private Logger log = Logger.getLogger( Artist.class );
+    private Logger log = LoggerFactory.getLogger( Artist.class );
 
     @NotNull
     @NotEmpty

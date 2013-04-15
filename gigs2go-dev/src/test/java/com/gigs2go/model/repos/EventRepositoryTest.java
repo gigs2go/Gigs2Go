@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import java.text.ParseException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ import com.gigs2go.test.Utils;
 @Transactional
 public class EventRepositoryTest extends AbstractRepoTest {
 
-    private Logger log = Logger.getLogger( EventRepositoryTest.class );
+    private Logger log = LoggerFactory.getLogger( EventRepositoryTest.class );
 
     @Autowired
     private EventRepository repo;
