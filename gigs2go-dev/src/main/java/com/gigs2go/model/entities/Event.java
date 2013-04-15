@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.gigs2go.model.entities;
 
 import javax.persistence.Column;
@@ -10,19 +7,19 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
-//import org.hibernate.annotations.Type;
-//import org.joda.time.contrib.hibernate.PersistentDateTime;
 
 /**
  * @author tim
  * 
  */
 @Entity
+@TypeDef( name = "localDate", typeClass = org.jadira.usertype.dateandtime.joda.PersistentLocalDate.class )
 @Table( name = "events" )
 public class Event extends BaseEntity {
     @Transient
@@ -34,11 +31,9 @@ public class Event extends BaseEntity {
     @ManyToOne
     private Venue venue;
 
-    // @Temporal( value = TemporalType.DATE )
     @DateTimeFormat( pattern = "yyyy/MM/dd (EEE, MMM dd)" )
     @NotNull
-    // @Type( type = "org.joda.time.contrib.hibernate.PersistentDateTime" )
-    @Type( type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate" )
+    @Type( type = "localDate" )
     @Column( name = "dayt" )
     private LocalDate date;
 

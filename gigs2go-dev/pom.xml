@@ -5,7 +5,36 @@
 	<artifactId>example</artifactId>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>gigs2go</name>
+	<name>Gigs2Go Example</name>
+	<description>Example </description>
+	<url>http://github.com/gigs2go/gigs2go-dev</url>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/gigs2go/gigs2go-dev/issues</url>
+	</issueManagement>
+	<inceptionYear>2013</inceptionYear>
+	<developers>
+		<developer>
+			<id>tim</id>
+			<name>Tim Shaw</name>
+			<email></email>
+			<roles>
+				<role>Lead developer</role>
+			</roles>
+			<timezone>0</timezone>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>Gigs2Go.com</name>
+		<url></url>
+	</organization>
 
 	<!-- As far as possible, and for clarity, the versions of things are handled 
 		here -->
@@ -19,14 +48,13 @@
 		<jpa.version>2.0.0</jpa.version>
 		<junit.version>4.10</junit.version>
 		<logback.version>1.0.11</logback.version>
-		<org.slf4j.version>1.7.1</org.slf4j.version>
-		<org.log4j.version>1.2.17</org.log4j.version>
 		<org.aspectj.version>1.6.10</org.aspectj.version>
 		<org.apache.tomcat.version>7.0.30</org.apache.tomcat.version>
 		<javax.servlet.jsp.version>2.1</javax.servlet.jsp.version>
 		<javax.servlet.jsp.jstl.version>1.2</javax.servlet.jsp.jstl.version>
 		<org.hibernate.version>4.1.4.Final</org.hibernate.version>
 		<org.hibernate.validator.version>4.1.0.Final</org.hibernate.validator.version>
+		<org.hibernate.annotations.version>3.3.0.ga</org.hibernate.annotations.version>
 		<org.hibernate.api.version>1.0.1.Final</org.hibernate.api.version>
 		<!-- Replace (never use) Java Date/Calendar -->
 		<jodatime.version>2.2</jodatime.version>
@@ -42,6 +70,65 @@
 		<webjars-jquery.version>1.9.1</webjars-jquery.version>
 		<dandelion.datatables.version>0.8.10</dandelion.datatables.version>
 	</properties>
+
+	<build>
+		<resources>
+			<resource>
+				<targetPath>META-INF</targetPath>
+				<directory>${basedir}</directory>
+				<includes>
+					<include>LICENSE.txt</include>
+					<include>NOTICE.txt</include>
+					<include>README.md</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<linksource>true</linksource>
+					<links>
+						<link>http://download.oracle.com/javase/6/docs/api/</link>
+						<link>http://static.springsource.org/spring/docs/3.2.x/javadoc-api/</link>
+						<link>http://static.springsource.org/spring-data/jpa/docs/dev/api/</link>
+						<link>http://static.springsource.org/spring-security/site/docs/3.1.x/apidocs/</link>
+					</links>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>1.0.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<!-- Jackson - used in Spring and Google, so included here to get the latest/consistent 
@@ -155,12 +242,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-webflow</artifactId>
 			<version>2.3.2.RELEASE</version>
@@ -218,31 +299,6 @@
 			<artifactId>google-api-services-drive</artifactId>
 			<version>v2-rev61-1.13.2-beta</version>
 		</dependency>
-
-		<!-- Logging -->
-		<!-- dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${org.slf4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${org.slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${org.log4j.version}</version>
-			<scope>runtime</scope>
-		</dependency -->
 
 		<!-- Servlet -->
 		<dependency>
@@ -314,6 +370,11 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>${org.hibernate.api.version}</version>
 		</dependency>
+		<!-- dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>${org.hibernate.annotations.version}</version>
+		</dependency -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -442,29 +503,9 @@
 		</repository>
 
 		<repository>
-			<id>google-api-services</id>
+			<id>mavenrepo-google-api-services</id>
 			<url>http://mavenrepo.google-api-java-client.googlecode.com/hg</url>
 		</repository>
 	</repositories>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.mysema.maven</groupId>
-				<artifactId>apt-maven-plugin</artifactId>
-				<version>1.0.6</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/generated-sources/java</outputDirectory>
-							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>

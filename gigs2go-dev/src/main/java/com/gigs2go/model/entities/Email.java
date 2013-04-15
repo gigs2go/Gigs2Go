@@ -29,7 +29,7 @@ public class Email {
     }
 
     /**
-     * @param email
+     * @param value
      *            the email to set
      */
     public void setValue ( String value ) {

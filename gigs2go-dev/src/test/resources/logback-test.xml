@@ -15,7 +15,7 @@
     </encoder>
   </appender>
   <logger name="o.s" level="INFO"/>
-  <logger name="org.springframework" level="DEBUG"/>
+  <logger name="org.springframework" level="INFO"/>
   <logger name="org.hibernate" level="INFO"/>
   <logger name="com.gigs2go" level="DEBUG"/>
   <logger name="org.springframework.data" level="INFO"/>
