@@ -5,6 +5,7 @@
 
 	<import resource="classpath*:config/repo.xml" />
 	<import resource="classpath*:config/mvc.xml" />
+	<import resource="classpath*:config/security.xml" />
 	<import resource="classpath*:config/blogger.xml" />
 
 </beans>
