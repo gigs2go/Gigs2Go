@@ -33,6 +33,24 @@ public class User {
     @NotNull
     private String password;
 
+    @Transient
+    private String checkPassword;
+
+    /**
+     * @return the checkPassword
+     */
+    public String getCheckPassword () {
+        return this.checkPassword;
+    }
+
+    /**
+     * @param checkPassword
+     *            the checkPassword to set
+     */
+    public void setCheckPassword ( String checkPassword ) {
+        this.checkPassword = checkPassword;
+    }
+
     @NotNull
     private Boolean enabled = Boolean.TRUE;
 

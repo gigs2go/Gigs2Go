@@ -27,7 +27,7 @@
 					</sec:authorize>
 			<sec:authorize access="isAnonymous()">
 			<li><a
-				href="<spring:url value="/login/form.jsp" htmlEscape="true" />"><i
+				href="<spring:url value="/login" htmlEscape="true" />"><i
 					class="icon-thumbs-up"></i>Login</a></li>
 					</sec:authorize>
 		</ul>
