@@ -31,7 +31,7 @@ public class Venue extends BaseEntity {
     @Embedded
     private Address address;
 
-    @OneToMany
+    @OneToMany( mappedBy = "venue" )
     private Set<Event> events;
 
     /**

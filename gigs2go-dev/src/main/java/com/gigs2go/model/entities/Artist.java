@@ -12,10 +12,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Entity
 @Table( name = "artists" )
@@ -33,7 +33,7 @@ public class Artist extends BaseEntity {
     @NotNull
     private Email email;
 
-    @OneToMany
+    @OneToMany( mappedBy = "artist" )
     private Set<Event> events;
 
     /**

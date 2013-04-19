@@ -40,7 +40,8 @@ public class UserValidator implements Validator {
     public void validate ( Object target, Errors errors ) {
         ValidationUtils.rejectIfEmptyOrWhitespace( errors, "username", "field.required" );
         ValidationUtils.rejectIfEmptyOrWhitespace( errors, "password", "field.required" );
-        ValidationUtils.rejectIfEmptyOrWhitespace( errors, "checkPassword", "field.required" );
+        // ValidationUtils.rejectIfEmptyOrWhitespace( errors, "checkPassword",
+        // "field.required" );
         User user = (User)target;
         log.debug( "Checking for User with username " + user.getUsername() );
         if ( repo.findByUsername( user.getUsername() ) != null ) {

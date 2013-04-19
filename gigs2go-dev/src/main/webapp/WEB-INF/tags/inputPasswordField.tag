@@ -12,7 +12,7 @@
         <label class="control-label">${label}</label>
 
         <div class="controls">
-            <form:password path="${name}" />
+            <form:password path="${name}" showPassword="true"/>
             <span class="help-inline">${status.errorMessage}</span>
         </div>
     </div>

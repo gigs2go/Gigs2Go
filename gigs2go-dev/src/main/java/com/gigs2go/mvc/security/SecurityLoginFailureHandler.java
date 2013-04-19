@@ -25,7 +25,7 @@ public class SecurityLoginFailureHandler extends SimpleUrlAuthenticationFailureH
 
     @Override
     public void onAuthenticationFailure ( HttpServletRequest request, HttpServletResponse response, AuthenticationException exception ) throws IOException, ServletException {
-        log.debug( "Successfully logged in with User :'{}'", exception.getMessage() );
+        log.debug( "Failed to login :'{}'", exception.getMessage() );
 
         if ( "XMLHttpRequest".equals( request.getHeader( "X-Requested-With" ) ) ) {
             response.getWriter().print( "{success:false, message: 'Username/Password are invalid'}" );

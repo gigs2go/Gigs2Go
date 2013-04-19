@@ -51,7 +51,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             com.gigs2go.model.entities.security.User domainUser = userRepository.findByUsername( username );
 
             log.debug( "Found {}", domainUser );
-            boolean enabled = true;
+            boolean enabled = domainUser.getEnabled();
             boolean accountNonExpired = true;
             boolean credentialsNonExpired = true;
             boolean accountNonLocked = true;

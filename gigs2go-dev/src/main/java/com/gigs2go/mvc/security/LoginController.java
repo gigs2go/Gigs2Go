@@ -3,8 +3,6 @@
  */
 package com.gigs2go.mvc.security;
 
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -43,31 +41,53 @@ public class LoginController {
     }
 
     @RequestMapping( value = "/login", method = RequestMethod.GET )
-    public String add ( Model model ) {
+    public String loginSetup ( Model model ) {
 
+        log.debug( "Creating new User" );
         User user = new User();
-        Map<String, Object> modelMap = model.asMap();
-        for ( String key : modelMap.keySet() ) {
-            log.debug( "Key {}", key );
-        }
-        log.debug( "Should pre-set username/password to {}/{}", model.asMap().get( "j_username" ), model.asMap().get( "j_password" ) );
+        user.setEnabled( false );
 
         model.addAttribute( user );
+
         return "login/login";
 
     }
 
-    @RequestMapping( value = "/login", method = RequestMethod.POST )
-    public String create ( @Valid User user, BindingResult result, Model model, SessionStatus status ) {
+    @RequestMapping( value = "/login/failure", method = RequestMethod.GET )
+    public String loginFailure ( Model model ) {
+
+        log.debug( "Creating new User" );
+        User user = new User();
+        user.setEnabled( false );
+
+        model.addAttribute( user );
+        model.addAttribute( "fail", true );
+        return "login/login";
+
+    }
+
+    @RequestMapping( value = "/register/new", method = RequestMethod.POST )
+    public String newUser ( @Valid User user, BindingResult result, Model model ) {
+
+        log.debug( "Result is {}", result );
+        log.debug( "User is {}/{} - {}", user.getUsername(), user.getPassword(), user.getEnabled() );
+
+        return "login/register";
+
+    }
+
+    @RequestMapping( value = "/register/add", method = RequestMethod.POST )
+    public String addUser ( @Valid User user, BindingResult result, Model model, SessionStatus status ) {
 
         if ( result.hasErrors() ) {
             log.debug( "Errors" );
-            return "login/login";
+            return "login/register";
         }
+        user.setEnabled( true );
+        service.save( user );
         status.setComplete();
 
         return "redirect:/";
 
     }
-
 }
