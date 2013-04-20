@@ -1,5 +1,7 @@
 package com.gigs2go.model.entities.security;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +23,12 @@ import com.gigs2go.model.entities.Artist;
 @Table( name = "authorities" )
 // @org.hibernate.annotations.Table(appliesTo="authorities", indexes = {
 // @Index(name="authorities_idx_1", columnNames={"username", "authority"})})
-public class Authority {
+public class Authority implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Transient
     private Logger log = LoggerFactory.getLogger( Artist.class );
 

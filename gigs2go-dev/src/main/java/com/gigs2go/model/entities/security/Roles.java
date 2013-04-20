@@ -1,6 +1,8 @@
 package com.gigs2go.model.entities.security;
 
-public interface Roles {
+import java.io.Serializable;
+
+public interface Roles extends Serializable {
     public static final String ROLE_ADMIN = "ROLE_ADMIN";
     public static final String ROLE_ARTIST = "ROLE_ARTIST";
     public static final String ROLE_EVENT = "ROLE_EVENT";

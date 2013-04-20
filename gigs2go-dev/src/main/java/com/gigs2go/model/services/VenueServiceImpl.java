@@ -19,7 +19,7 @@ import com.gigs2go.model.repos.VenueRepository;
  * @author tim
  * 
  */
-@Service
+@Service( "venueService" )
 @Transactional( readOnly = true )
 public class VenueServiceImpl implements VenueService {
     private Logger log = LoggerFactory.getLogger( VenueServiceImpl.class );
@@ -88,6 +88,7 @@ public class VenueServiceImpl implements VenueService {
      * com.gigs2go.model.services.VenueService#save(com.gigs2go.model.entities
      * .Venue)
      */
+    @Transactional
     public Venue save ( Venue venue ) {
         return repo.save( venue );
     }

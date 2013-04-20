@@ -1,5 +1,6 @@
 package com.gigs2go.model.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -26,15 +27,15 @@ public class Artist extends BaseEntity {
     @NotNull
     @NotEmpty
     @NotBlank
-    private String name;
+    private String name = "";
 
     @Embedded
     @AttributeOverrides( { @AttributeOverride( name = "value", column = @Column( name = "email" ) ) } )
     @NotNull
-    private Email email;
+    private Email email = new Email();
 
     @OneToMany( mappedBy = "artist" )
-    private Set<Event> events;
+    private Set<Event> events = new HashSet<Event>();
 
     /**
      * @return the events

@@ -30,6 +30,11 @@
 				href="<spring:url value="/login" htmlEscape="true" />"><i
 					class="icon-thumbs-up"></i>Login</a></li>
 					</sec:authorize>
+			<sec:authorize access="isAnonymous()">
+			<li><a
+				href="<spring:url value="/register" htmlEscape="true" />"><i
+					class="icon-thumbs-up"></i>Register</a></li>
+					</sec:authorize>
 		</ul>
 	</div>
 </div>

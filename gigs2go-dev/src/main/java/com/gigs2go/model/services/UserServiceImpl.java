@@ -19,7 +19,7 @@ import com.gigs2go.model.repos.security.UserRepository;
  * @author tim
  * 
  */
-@Service
+@Service( "userService" )
 @Transactional( readOnly = true )
 public class UserServiceImpl implements UserService {
     private Logger log = LoggerFactory.getLogger( UserServiceImpl.class );
@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User save ( User user ) {
+        log.debug( "Saving User {}", user );
         return repo.save( user );
     }
 

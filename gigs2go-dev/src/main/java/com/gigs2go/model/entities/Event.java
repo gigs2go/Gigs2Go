@@ -26,16 +26,16 @@ public class Event extends BaseEntity {
     private Logger log = LoggerFactory.getLogger( Event.class );
 
     @ManyToOne
-    private Artist artist;
+    private Artist artist = new Artist();
 
     @ManyToOne
-    private Venue venue;
+    private Venue venue = new Venue();
 
     @DateTimeFormat( pattern = "yyyy/MM/dd (EEE, MMM dd)" )
     @NotNull
     @Type( type = "localDate" )
     @Column( name = "dayt" )
-    private LocalDate date;
+    private LocalDate date = new LocalDate();
 
     /**
      * @return the date

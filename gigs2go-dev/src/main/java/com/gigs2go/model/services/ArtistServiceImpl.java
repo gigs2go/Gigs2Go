@@ -19,7 +19,7 @@ import com.gigs2go.model.repos.ArtistRepository;
  * @author tim
  * 
  */
-@Service
+@Service( "artistService" )
 @Transactional( readOnly = true )
 public class ArtistServiceImpl implements ArtistService {
     private Logger log = LoggerFactory.getLogger( ArtistServiceImpl.class );
@@ -92,6 +92,7 @@ public class ArtistServiceImpl implements ArtistService {
      */
     @Transactional
     public Artist save ( Artist artist ) {
+        log.debug( "Saving Artist {}", artist );
         return repo.save( artist );
     }
 

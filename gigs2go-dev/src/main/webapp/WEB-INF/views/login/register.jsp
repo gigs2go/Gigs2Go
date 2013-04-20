@@ -10,17 +10,18 @@
 <body>
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
-		<c:set var="label" value="Register User" />
+		<c:set var="label" value="Register" />
 		<h2>${label}</h2>
-		<form:form modelAttribute="user" method="post" class="form-horizontal"
+		<form:form commandName="register" modelAttribute="user" method="post" class="form-horizontal"
 			id="register-form">
 			<fieldset>
 				<gigs2go:inputField label="Username" name="username" />
 				<gigs2go:inputPasswordField label="Password" name="password" />
 				<gigs2go:inputPasswordField label="Re-enter Password"
 					name="checkPassword" />
+				<gigs2go:inputRadio label="User Type" name="userType" items="<%= com.gigs2go.model.entities.security.UserType.values() %>"/>
 				<div>
-					<button type="submit" formaction="../register/add">${label}</button>
+					<input type="submit" class="button" name="_eventId_submit" value="${label}"/>
 				</div>
 			</fieldset>
 		</form:form>

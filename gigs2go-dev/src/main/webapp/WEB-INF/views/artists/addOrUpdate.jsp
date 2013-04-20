@@ -28,7 +28,7 @@
 			<fieldset>
 				<gigs2go:inputField label="Name" name="name" />
 				<gigs2go:inputField label="E-mail" name="email.value" />
-				<button type="submit">${label}</button>
+				<input type="submit" class="button" name="_eventId_submit" value="${label}"/>
 			</fieldset>
 		</form:form>
 	</div>

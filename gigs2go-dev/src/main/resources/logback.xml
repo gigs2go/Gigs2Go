@@ -17,6 +17,7 @@
   <logger name="o.s" level="INFO"/>
   <logger name="org.springframework" level="INFO"/>
   <logger name="org.springframework.security" level="DEBUG"/>
+  <logger name="org.springframework.webflow" level="DEBUG"/>
   <logger name="org.hibernate" level="ERROR"/>
   <logger name="com.gigs2go" level="DEBUG"/>
   <logger name="org.springframework.data" level="INFO"/>

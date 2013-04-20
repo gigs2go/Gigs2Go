@@ -1,5 +1,6 @@
 package com.gigs2go.model.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -21,18 +22,18 @@ public class Venue extends BaseEntity {
     @Transient
     private Logger log = LoggerFactory.getLogger( Venue.class );
 
-    private String name;
+    private String name = "";
 
     @Embedded
     @AttributeOverrides( { @AttributeOverride( name = "value", column = @Column( name = "email" ) ) } )
     @NotNull
-    private Email email;
+    private Email email = new Email();
 
     @Embedded
-    private Address address;
+    private Address address = new Address();
 
     @OneToMany( mappedBy = "venue" )
-    private Set<Event> events;
+    private Set<Event> events = new HashSet<Event>();
 
     /**
      * @return the events

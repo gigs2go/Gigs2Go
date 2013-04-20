@@ -3,6 +3,8 @@
  */
 package com.gigs2go.model.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
@@ -14,11 +16,16 @@ import org.slf4j.LoggerFactory;
  * 
  */
 @Embeddable
-public class Address {
+public class Address implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     @Transient
     private Logger log = LoggerFactory.getLogger( Address.class );
 
-    private String town;
+    private String town = "";
 
     /**
      * @return the town

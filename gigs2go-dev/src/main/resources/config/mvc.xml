@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:task="http://www.springframework.org/schema/task" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -56,7 +58,7 @@
 		by the path extension) to pick a matching view. - When the media type is 
 		'text/html', it will delegate to the InternalResourceViewResolver's JstlView, 
 		- otherwise to the BeanNameViewResolver. -->
-	<beans:bean
+	<beans:bean id="contentNegotiationViewResolver"
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<beans:property name="contentNegotiationManager" ref="cnManager" />
 
@@ -92,13 +94,6 @@
 			</beans:map>
 		</beans:property>
 	</beans:bean>
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
-	<!-- beans:bean id="urlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<beans:property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
-		/> <beans:property name="prefix" value="/WEB-INF/views/" /> <beans:property 
-		name="suffix" value=".jsp" /> </beans:bean -->
 
 	<!-- Needed because we install custom converters and formatters -->
 	<annotation-driven conversion-service="conversionService" />
@@ -143,5 +138,42 @@
 	<!-- Maps '/' requests to the 'index' view -->
 	<view-controller path="/" view-name="index" />
 
+	<!-- Enable Webflow handling -->
+	<beans:bean class="org.springframework.webflow.scope.ScopeRegistrar" />
+	<beans:bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<beans:property name="flowExecutor" ref="flowExecutor" />
+	</beans:bean>
+
+	<beans:bean
+		class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<beans:property name="flowRegistry" ref="flowRegistry" />
+		<beans:property name="order" value="0" />
+	</beans:bean>
+
+	<webflow:flow-executor id="flowExecutor"
+		flow-registry="flowRegistry">
+		<webflow:flow-execution-listeners>
+			<webflow:listener ref="securityFlowExecutionListener" />
+		</webflow:flow-execution-listeners>
+	</webflow:flow-executor>
+
+	<webflow:flow-registry id="flowRegistry"
+		flow-builder-services="flowBuilderServices">
+		<webflow:flow-location-pattern value="/WEB-INF/flows/*.xml" />
+	</webflow:flow-registry>
+
+	<webflow:flow-builder-services id="flowBuilderServices"
+		view-factory-creator="mvcViewFactoryCreator" />
+
+	<beans:bean id="mvcViewFactoryCreator"
+		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<beans:property name="viewResolvers"
+			ref="contentNegotiationViewResolver" />
+	</beans:bean>
+
+	<!-- Installs a listener to apply Spring Security authorities -->
+	<beans:bean id="securityFlowExecutionListener"
+		class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
 </beans:beans>
 	

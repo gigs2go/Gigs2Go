@@ -3,6 +3,8 @@
  */
 package com.gigs2go.model.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 /**
@@ -10,9 +12,13 @@ import javax.persistence.Embeddable;
  * 
  */
 @Embeddable
-public class Email {
+public class Email implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     @org.hibernate.validator.constraints.Email( message = "{email.invalid}" )
-    private String value;
+    private String value = "";
 
     public Email() {
     }
