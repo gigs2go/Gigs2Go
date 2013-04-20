@@ -29,161 +29,164 @@
 /*
  * Gigs2go styling
  */
- /* Override Bootstrap (width 220px) - might have to 'refine' this to just be 
+/* Override Bootstrap (width 220px) - might have to 'refine' this to just be 
     for the datatables 'per page' select box */
-    /*
+/*
 select {
   width: 60px;
 }
 */
- 
 table.artists {
-    clear: both;
+	clear: both;
 }
- 
+
 /* Self clearing - */
 div.dataTables_wrapper:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
 }
-html[xmlns] .dataTables_wrapper { display: block; }
-* html .dataTables_wrapper { height: 1%; }
+
+html[xmlns] .dataTables_wrapper {
+	display: block;
+}
+
+* html .dataTables_wrapper {
+	height: 1%;
+}
 
 table.gigs2goList {
-	width: 601px;   /* width: 100%; */
-    clear: both;
+	width: 100%; /* width: 601px; */
+	clear: both;
 }
- 
-table.gigs2goList td,
-table.gigs2goList th {
-    padding: 5px;
-    border: 1px solid #fff;
+
+table.gigs2goList td,table.gigs2goList th {
+	padding: 5px;
+	border: 1px solid #fff;
 }
 /* Header cells */
 table.gigs2goList thead th {
-    text-align: center;
-    background: #66a9bd;
+	text-align: center;
+	background: #66a9bd;
 }
 /* Body cells */
 table.gigs2goList tbody th {
-    text-align: left;
-    background: #91c5d4;
+	text-align: left;
+	background: #91c5d4;
 }
-     
+
 table.gigs2goList tbody td {
-    text-align: center;
-    background: #d5eaf0;
+	text-align: center;
+	background: #d5eaf0;
 }
-         
+
 table.gigs2goList tbody tr.odd td {
-    background: #bcd9e1;
+	background: #bcd9e1;
 }
 /* Footer cells */
 table.gigs2goList tfoot th {
-    background: #b0cc7f;
-    text-align: left;
+	background: #b0cc7f;
+	text-align: left;
 }
-     
+
 table.gigs2goList tfoot td {
-    background: #d7e1c5;
-    text-align: center;
-    font-weight: bold;
+	background: #d7e1c5;
+	text-align: center;
+	font-weight: bold;
 }
 
 div.dataTables_wrapper {
-    background-color: #719ba7;
+	background-color: #719ba7;
 }
 
 table.gigs2goList thead th.sorting_asc {
-    background: #66A9BD url('images/sort_asc.png') no-repeat right center;
-}
- 
-table.gigs2goList thead th.sorting_desc {
-    background: #66A9BD url('images/sort_desc.png') no-repeat right center;
-}
- 
-table.gigs2goList thead th.sorting {
-    background: #66A9BD url('images/sort_both.png') no-repeat right center;
+	background: #66A9BD url('images/sort_asc.png') no-repeat right center;
 }
 
-a.paginate_button,
-a.paginate_active {
-    display: inline-block;
-    background-color: #608995;
-    padding: 2px 6px;
-    margin-left: 2px;
-    cursor: pointer;
-    *cursor: hand;
+table.gigs2goList thead th.sorting_desc {
+	background: #66A9BD url('images/sort_desc.png') no-repeat right center;
 }
- 
-a.paginate_active {
-    background-color: transparent;
-    border: 1px solid black;
+
+table.gigs2goList thead th.sorting {
+	background: #66A9BD url('images/sort_both.png') no-repeat right center;
 }
- 
+
+a.paginate_button,a.paginate_active {
+	display: inline-block;
+	background-color: #608995;
+	padding: 2px 6px;
+	margin-left: 2px;
+	cursor: pointer;
+	*cursor: hand;
+}
+
+a.paginate_active {
+	background-color: transparent;
+	border: 1px solid black;
+}
+
 a.paginate_button_disabled {
-    color: #3d6672;
+	color: #3d6672;
 }
+
 .paging_full_numbers a:active {
-    outline: none
+	outline: none
 }
+
 .paging_full_numbers a:hover {
-    text-decoration: none;
+	text-decoration: none;
 }
- 
+
 div.dataTables_paginate span>a {
-    width: 15px;
-    text-align: center;
+	width: 15px;
+	text-align: center;
 }
- 
+
 div.dataTables_info {
-    padding: 9px 6px 6px 6px;
+	padding: 9px 6px 6px 6px;
 }
 /*
  * Petclinic-like styling
  */
 .container {
-    padding-top: 10px;
-    margin-left: 50px;
-    width: 601px;
+	padding-top: 10px;
+	margin-left: 50px;
+	width: 800px;
 }
 
 .form-horizontal {
-    width: 100%;
+	width: 100%;
 }
 
 input[type="text"] {
-    height: 25px;
+	height: 25px;
 }
 
-.navbar .nav > li > a {
-    color: #000000;
+.navbar .nav>li>a {
+	color: #000000;
 }
 
 .form-horizontal .control-label {
-    text-align: left;
+	text-align: left;
 }
-
 
 /*
  * jQuery UI specific styling
  */
-
 .paging_two_button .ui-button {
 	float: left;
-	cursor: pointer;
-	* cursor: hand;
+	cursor: pointer; *
+	cursor: hand;
 }
 
 .paging_full_numbers .ui-button {
 	padding: 2px 6px;
 	margin: 0;
-	cursor: pointer;
-	* cursor: hand;
+	cursor: pointer; *
+	cursor: hand;
 	color: #333 !important;
 }
 
@@ -209,14 +212,13 @@ input[type="text"] {
 
 table.display thead th {
 	padding: 3px 0px 3px 10px;
-	cursor: pointer;
-	* cursor: hand;
+	cursor: pointer; *
+	cursor: hand;
 }
 
 div.dataTables_wrapper .ui-widget-header {
 	font-weight: normal;
 }
-
 
 /*
  * Sort arrow icon positioning
@@ -233,17 +235,12 @@ table.display thead th div.DataTables_sort_wrapper span {
 	right: 0;
 }
 
-
-
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * Everything below this line is the same as demo_table.css. This file is
  * required for 'cleanliness' of the markup
  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables features
@@ -287,11 +284,9 @@ table.display thead th div.DataTables_sort_wrapper span {
 	text-align: right;
 }
 
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables display
  */
-
 table.display {
 	margin: 0 auto;
 	width: 100%;
@@ -317,11 +312,9 @@ table.display td.center {
 	text-align: center;
 }
 
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables sorting
  */
-
 .sorting_asc {
 	background: url('../images/sort_asc.png') no-repeat center right;
 }
@@ -335,15 +328,14 @@ table.display td.center {
 }
 
 .sorting_asc_disabled {
-	background: url('../images/sort_asc_disabled.png') no-repeat center right;
+	background: url('../images/sort_asc_disabled.png') no-repeat center
+		right;
 }
 
 .sorting_desc_disabled {
-	background: url('../images/sort_desc_disabled.png') no-repeat center right;
+	background: url('../images/sort_desc_disabled.png') no-repeat center
+		right;
 }
-
-
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables row classes
@@ -355,9 +347,6 @@ table.display tr.odd.gradeA {
 table.display tr.even.gradeA {
 	background-color: #eeffee;
 }
-
-
-
 
 table.display tr.odd.gradeA {
 	background-color: #ddffdd;
@@ -391,7 +380,6 @@ table.display tr.even.gradeU {
 	background-color: #eee;
 }
 
-
 tr.odd {
 	background-color: #E2E4FF;
 }
@@ -399,10 +387,6 @@ tr.odd {
 tr.even {
 	background-color: white;
 }
-
-
-
-
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Misc
@@ -415,7 +399,7 @@ tr.even {
 	-webkit-overflow-scrolling: touch;
 }
 
-.top, .bottom {
+.top,.bottom {
 	padding: 15px;
 	background-color: #F5F5F5;
 	border: 1px solid #CCCCCC;
@@ -454,13 +438,12 @@ td.details {
 	border: 2px solid #A19B9E;
 }
 
-
 .example_alt_pagination div.dataTables_info {
 	width: 40%;
 }
 
-.paging_full_numbers a.paginate_button,
- 	.paging_full_numbers a.paginate_active {
+.paging_full_numbers a.paginate_button,.paging_full_numbers a.paginate_active
+	{
 	border: 1px solid #aaa;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -492,7 +475,6 @@ table.display tr.odd.row_selected td {
 	background-color: #9FAFD1;
 }
 
-
 /*
  * Sorting classes for columns
  */
@@ -520,7 +502,6 @@ tr.even td.sorting_2 {
 tr.even td.sorting_3 {
 	background-color: #F9F9FF;
 }
-
 
 /* For the Conditional-CSS grading rows */
 /*
@@ -628,14 +609,15 @@ tr.even.gradeU td.sorting_3 {
 	background-color: #e2e2e2;
 }
 
-
 /*
  * Row highlighting example
  */
-.ex_highlight #example tbody tr.even:hover, #example tbody tr.even td.highlighted {
+.ex_highlight #example tbody tr.even:hover,#example tbody tr.even td.highlighted
+	{
 	background-color: #ECFFB3;
 }
 
-.ex_highlight #example tbody tr.odd:hover, #example tbody tr.odd td.highlighted {
+.ex_highlight #example tbody tr.odd:hover,#example tbody tr.odd td.highlighted
+	{
 	background-color: #E6FF99;
 }

@@ -2,7 +2,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<div class="navbar" style="width: 601px;">
+<div class="navbar" style="width: 100%;">
 	<div class="navbar-inner">
 		<ul class="nav">
 			<li><a href="<spring:url value="/" htmlEscape="true" />"><i

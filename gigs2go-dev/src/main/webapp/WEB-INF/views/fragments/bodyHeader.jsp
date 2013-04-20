@@ -4,9 +4,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <spring:url value="/resources/images/gigs2goImg1.png" var="banner" />
-<img src="${banner}" />
+<img src="${banner}" width="100%"/>
 
-<div class="navbar" style="width: 601px;">
+<div class="navbar" style="width: 100%;">
 	<div class="navbar-inner">
 		<ul class="nav">
 			<li><a href="<spring:url value="/" htmlEscape="true" />"><i

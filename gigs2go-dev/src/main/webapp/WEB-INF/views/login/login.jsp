@@ -9,7 +9,6 @@
 <body>
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
-		<c:set var="register_label" value="Register" />
 		<c:choose>
 			<c:when test="${fail}">
 				<h2>Login Failed</h2>
@@ -19,7 +18,7 @@
 				<c:set var="login_label" value="Login" />
 			</c:otherwise>
 		</c:choose>
-		<h2>${login_label} Or ${register_label}</h2>
+		<h2>${login_label}</h2>
 
 		<form:form modelAttribute="user" method="post" class="form-horizontal"
 			id="login-form">
@@ -28,8 +27,6 @@
 				<gigs2go:inputPasswordField label="Password" name="password" />
 				<div>
 					<button type="submit" formaction="login_check">${login_label}</button>
-					&nbsp;Or&nbsp;
-					<button type="submit" formaction="../register/new">${register_label}</button>
 				</div>
 			</fieldset>
 		</form:form>
