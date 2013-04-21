@@ -8,7 +8,6 @@
 	<var name="user" class="com.gigs2go.model.entities.security.User" />
 	<var name="artist" class="com.gigs2go.model.entities.Artist" />
 	<var name="venue" class="com.gigs2go.model.entities.Venue" />
-	<var name="userVenue" class="com.gigs2go.mvc.dao.UserVenue" />
 
 	<view-state id="user" view="login/register" model="user">
 		<transition to="save-user" on="submit"></transition>
