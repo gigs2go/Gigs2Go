@@ -7,8 +7,8 @@
 <html lang="en">
 <jsp:include page="../fragments/header.jsp" />
 <body>
-	<jsp:include page="../fragments/bodyHeader.jsp" />
 	<div class="container">
+		<jsp:include page="../fragments/bodyHeader.jsp" />
 		<!-- TODO - Get label from messageSource -->
 		<c:choose>
 			<c:when test="${artist['new']}">
@@ -28,9 +28,10 @@
 			<fieldset>
 				<gigs2go:inputField label="Name" name="name" />
 				<gigs2go:inputField label="E-mail" name="email.value" />
-				<input type="submit" class="button" name="_eventId_submit" value="${label}"/>
+				<input type="submit" class="button" name="_eventId_submit"
+					value="${label}" />
 			</fieldset>
 		</form:form>
+		<jsp:include page="../fragments/bodyFooter.jsp" />
 	</div>
-	<jsp:include page="../fragments/bodyFooter.jsp" />
 </body>

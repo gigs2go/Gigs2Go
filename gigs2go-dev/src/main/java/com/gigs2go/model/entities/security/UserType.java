@@ -9,8 +9,14 @@ import java.io.Serializable;
  * @author tim
  * 
  */
-public enum UserType implements Serializable {
-    ADMIN, USER, ARTIST, VENUE, ORGANISER;
+public enum UserType implements Roles, Serializable {
+    ADMIN( ADMIN_ROLES ), USER( USER_ROLES ), ARTIST( ARTIST_ROLES ), VENUE( VENUE_ROLES ), ORGANISER( ORGANISER_ROLES );
+
+    private String[] roles;
+
+    UserType( String[] roles ) {
+        this.roles = roles;
+    }
 
     public boolean isAdmin () {
         return this.equals( UserType.ADMIN );
@@ -34,6 +40,13 @@ public enum UserType implements Serializable {
 
     public UserType[] getValues () {
         return UserType.values();
+    }
+
+    /**
+     * @return the roles
+     */
+    public String[] getRoles () {
+        return this.roles;
     }
 
 }

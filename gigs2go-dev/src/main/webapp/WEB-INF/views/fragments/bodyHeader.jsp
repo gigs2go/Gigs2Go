@@ -20,14 +20,14 @@
 			<li><a
 				href="<spring:url value="/events" htmlEscape="true" />"><i
 					class="icon-th-list"></i>List Events</a></li>
-			<sec:authorize access="hasRole('ROLE_USER')">
+			<sec:authorize access="isAuthenticated()">
 			<li><a
 				href="<spring:url value="/logout" htmlEscape="true" />"><i
 					class="icon-thumbs-down"></i>Logout</a></li>
 					</sec:authorize>
 			<sec:authorize access="isAnonymous()">
 			<li><a
-				href="<spring:url value="/login" htmlEscape="true" />"><i
+				href="<spring:url value="/login/login" htmlEscape="true" />"><i
 					class="icon-thumbs-up"></i>Login</a></li>
 					</sec:authorize>
 			<sec:authorize access="isAnonymous()">

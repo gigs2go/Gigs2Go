@@ -14,15 +14,6 @@
 
 	<context:component-scan base-package="com.gigs2go.mvc" />
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- annotation-driven conversion-service="conversionService"> <argument-resolvers> 
-		<beans:bean class="org.springframework.samples.mvc.data.custom.CustomArgumentResolver" 
-		/> </argument-resolvers> <async-support default-timeout="3000"> <callable-interceptors> 
-		<beans:bean class="org.springframework.samples.mvc.async.TimeoutCallableProcessingInterceptor" 
-		/> </callable-interceptors> </async-support> </annotation-driven -->
-
 	<!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies 
 		(Bootstrap, jQuery...) -->
 	<resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
@@ -155,6 +146,7 @@
 		flow-registry="flowRegistry">
 		<webflow:flow-execution-listeners>
 			<webflow:listener ref="securityFlowExecutionListener" />
+			<!-- webflow:listener ref="jpaFlowExecutionListener" / -->
 		</webflow:flow-execution-listeners>
 	</webflow:flow-executor>
 
@@ -168,12 +160,18 @@
 
 	<beans:bean id="mvcViewFactoryCreator"
 		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-		<beans:property name="viewResolvers"
-			ref="contentNegotiationViewResolver" />
+		<beans:property name="viewResolvers" ref="contentNegotiationViewResolver" />
 	</beans:bean>
 
 	<!-- Installs a listener to apply Spring Security authorities -->
 	<beans:bean id="securityFlowExecutionListener"
 		class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
+
+	<!-- DONT Enable JPA 'wrapped' transactions in WebFlow -->
+	<!-- beans:bean id="jpaFlowExecutionListener"
+		class="org.springframework.webflow.persistence.JpaFlowExecutionListener">
+		<beans:constructor-arg ref="entityManagerFactory" />
+		<beans:constructor-arg ref="transactionManager" />
+	</beans:bean -->
 </beans:beans>
 	

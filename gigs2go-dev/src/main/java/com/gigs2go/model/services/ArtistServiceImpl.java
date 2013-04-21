@@ -102,6 +102,7 @@ public class ArtistServiceImpl implements ArtistService {
      * @see com.gigs2go.mvc.services.ArtistService#getArtistById(java.lang.Long)
      */
     public Artist getArtistById ( Long id ) {
+        log.debug( "Getting Artist for id={}", id );
         return repo.findOne( id );
     }
 

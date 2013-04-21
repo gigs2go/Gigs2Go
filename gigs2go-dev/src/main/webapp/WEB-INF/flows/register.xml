@@ -3,45 +3,71 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd"
-	start-state="user">
-
+	start-state="user" >
+	
 	<var name="user" class="com.gigs2go.model.entities.security.User" />
 	<var name="artist" class="com.gigs2go.model.entities.Artist" />
 	<var name="venue" class="com.gigs2go.model.entities.Venue" />
+	<var name="userVenue" class="com.gigs2go.mvc.dao.UserVenue" />
 
 	<view-state id="user" view="login/register" model="user">
 		<transition to="save-user" on="submit"></transition>
 	</view-state>
 
-	<view-state id="artist" view="artists/addOrUpdate" model="artist">
-		<transition to="save-artist" on="submit"></transition>
-	</view-state>
-
-	<view-state id="venue" view="venues/addOrUpdate" model="venue">
-		<transition to="save-venue" on="submit"></transition>
-	</view-state>
-	
-	<end-state id="end" view="externalRedirect:/">
-	</end-state>
-	
-	<action-state id="save-user" >
+	<action-state id="save-user">
 		<evaluate expression="userService.save(user)" />
 		<transition to="user-type"></transition>
 	</action-state>
 
 	<decision-state id="user-type">
-		<if test="user.userType.user" then="end" />
-		<if test="user.userType.artist" then="artist" />
-		<if test="user.userType.venue" then="venue" />
+		<if test="user.userType.user" then="show-success" />
+		<if test="user.userType.artist" then="choose-artist" />
+		<if test="user.userType.venue" then="choose-venue" />
 	</decision-state>
+
+	<view-state id="choose-artist" view="artists/choose">
+		<on-render>
+			<evaluate expression="artistService.getArtists()" result="viewScope.artists" />
+		</on-render>
+		<transition to="show-success" on="submit">
+			<evaluate expression="artistService.getArtistById(requestParameters.id)" result="artist" />
+		</transition>
+		<transition to="new-artist" on="new" validate="false"></transition>
+	</view-state>
+	
+	<view-state id="new-artist" view="artists/addOrUpdate" model="artist">
+		<transition to="save-artist" on="submit"></transition>
+	</view-state>
 
 	<action-state id="save-artist">
 		<evaluate expression="artistService.save(artist)" />
-		<transition to="end"></transition>
+		<transition to="show-success"></transition>
 	</action-state>
-	
+
+	<view-state id="choose-venue" view="venues/choose">
+		<on-render>
+			<evaluate expression="venueService.getVenues()" result="viewScope.venues" />
+		</on-render>
+		<transition to="show-success" on="submit">
+			<evaluate expression="venueService.getVenueById(requestParameters.id)" result="venue" />
+		</transition>
+		<transition to="new-venue" on="new" validate="false"></transition>
+	</view-state>
+
+	<view-state id="new-venue" view="venues/addOrUpdate" model="venue">
+		<transition to="save-venue" on="submit"></transition>
+	</view-state>
+
 	<action-state id="save-venue">
 		<evaluate expression="venueService.save(venue)" />
-		<transition to="end"></transition>
+		<transition to="show-success"></transition>
 	</action-state>
+	
+	<view-state id="show-success" model="user" view="login/registerSuccess">
+		<transition to="end-success" on="continue" validate="false"/>
+	</view-state>
+
+	<end-state id="end-success" view="externalRedirect:/login/key/#{user.username}">
+	</end-state>
+
 </flow>

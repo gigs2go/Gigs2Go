@@ -15,7 +15,7 @@
         <label class="control-label">${label}</label>
 
         <div class="controls">
-					<form:select path="${name}">
+					<form:select name="id" path="${name}" >
 						<form:options items="${list}" itemLabel="name" itemValue="id" />
 					</form:select>
             <span class="help-inline">${status.errorMessage}</span>

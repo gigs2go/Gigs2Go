@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.gigs2go.model.entities.security.Authority;
-import com.gigs2go.model.entities.security.Roles;
 import com.gigs2go.model.repos.security.UserRepository;
 
 //import com.gigs2go.model.entities.security.User;
@@ -82,12 +81,9 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     public Collection<? extends GrantedAuthority> getAuthorities ( Set<Authority> authorities ) {
         List<String> roles = new ArrayList<String>();
-        for ( String role : Roles.ROLES ) {
-            roles.add( role );
+        for ( Authority authority : authorities ) {
+            roles.add( authority.getAuthority() );
         }
-        // for ( Authority authority : authorities) {
-        // roles.add( authority.getAuthority());
-        // }
         List<GrantedAuthority> result = getGrantedAuthorities( roles );
         return result;
     }

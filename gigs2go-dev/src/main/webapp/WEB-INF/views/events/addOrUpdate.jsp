@@ -7,8 +7,8 @@
 <html lang="en">
 <jsp:include page="../fragments/header.jsp" />
 <body>
-	<jsp:include page="../fragments/bodyHeader.jsp" />
 	<div class="container">
+		<jsp:include page="../fragments/bodyHeader.jsp" />
 		<c:choose>
 			<c:when test="${event['new']}">
 				<c:set var="method" value="post" />
@@ -22,7 +22,7 @@
 			</c:otherwise>
 		</c:choose>
 		<h2>${label}</h2>
-		
+
 		<form:form modelAttribute="event" method="${method}"
 			class="form-horizontal" id="event-form">
 			<fieldset>
@@ -31,7 +31,7 @@
 				<p>
 					<form:label path="date" cssErrorClass="error">Date</form:label>
 					<br />
-					<form:input id="datepicker" path="date" type="text"/>
+					<form:input id="datepicker" path="date" type="text" />
 					<form:errors path="date" />
 				</p>
 				<p>
@@ -41,8 +41,11 @@
 		</form:form>
 		<script>
 			$(function() {
-				$("#datepicker").datepicker({ minDate: "0", defaultDate: "+1", dateFormat: "yy/mm/dd (D, M dd)"
-					});
+				$("#datepicker").datepicker({
+					minDate : "0",
+					defaultDate : "+1",
+					dateFormat : "yy/mm/dd (D, M dd)"
+				});
 			});
 		</script>
 		<jsp:include page="../fragments/bodyFooter.jsp" />

@@ -11,6 +11,8 @@ import com.gigs2go.model.entities.security.User;
 public interface UserService {
     User getUserByUsername ( String username );
 
+    User getUserByKey ( String key );
+
     List<User> getUsers ();
 
     User save ( User user );

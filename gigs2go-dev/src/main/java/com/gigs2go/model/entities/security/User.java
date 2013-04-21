@@ -29,17 +29,23 @@ public class User implements Serializable {
 
     @Id
     @Column( updatable = false, nullable = false, length = 50 )
-    private String username;
+    private String username = "";
 
     @Column( updatable = false, nullable = false, length = 50 )
     @NotNull
-    private String password;
+    private String password = "";
 
     @Enumerated( EnumType.STRING )
-    private UserType userType;
+    private UserType userType = UserType.USER;
+
+    @NotNull
+    private Boolean enabled = Boolean.FALSE;
+
+    @OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private Set<Authority> authorities = new HashSet<Authority>();
 
     @Transient
-    private String checkPassword;
+    private String checkPassword = "";
 
     /**
      * @return the checkPassword
@@ -54,31 +60,6 @@ public class User implements Serializable {
      */
     public void setCheckPassword ( String checkPassword ) {
         this.checkPassword = checkPassword;
-    }
-
-    @NotNull
-    private Boolean enabled = Boolean.TRUE;
-
-    @OneToMany( mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    private Set<Authority> authorities;
-
-    @Transient
-    // TODO - Refactor
-    public String[] getRoles () {
-        return Roles.ROLES;
-    }
-
-    public void setRoles ( String[] roles ) {
-        log.debug( "Setting roles - " );
-        this.authorities = new HashSet<Authority>();
-        Authority authority = null;
-        for ( String role : roles ) {
-            log.debug( "Role : " + role );
-            authority = new Authority();
-            authority.setUser( this );
-            authority.setAuthority( role );
-            authorities.add( authority );
-        }
     }
 
     public String getUsername () {
@@ -126,6 +107,16 @@ public class User implements Serializable {
 
     public void setAuthorities ( Set<Authority> authorities ) {
         this.authorities = authorities;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString () {
+        return "User [username=" + this.username + ", password=" + this.password + ", userType=" + this.userType + ", enabled=" + this.enabled + ", authorities=" + this.authorities + ", checkPassword=" + this.checkPassword + "]";
     }
 
 }
