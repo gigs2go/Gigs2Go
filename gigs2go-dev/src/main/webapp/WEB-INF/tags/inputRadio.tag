@@ -7,6 +7,8 @@
 	description="Label appears in red color if input is considered as invalid after submission"%>
 <%@ attribute name="items" required="true" rtexprvalue="true" type="java.lang.Enum[]"
 	description="The items to be displayed"%>
+<%@ attribute name="title" required="false" rtexprvalue="true"
+              description="This is the balloon text which appears when the input field is hovered over" %>
 
 <spring:bind path="${name}">
 	<c:set var="cssGroup"
@@ -15,7 +17,7 @@
 		<label class="control-label">${label}</label>
 
 		<div class="controls">
-			<form:radiobuttons path="${name}" items="${items}"/>
+			<form:radiobuttons path="${name}" items="${items}" title="${title}"/>
 			<span class="help-inline">${status.errorMessage}</span>
 		</div>
 	</div>

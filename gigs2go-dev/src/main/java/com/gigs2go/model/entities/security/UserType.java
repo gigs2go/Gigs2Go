@@ -49,4 +49,9 @@ public enum UserType implements Roles, Serializable {
         return this.roles;
     }
 
+    public static UserType[] getRegisterTypes () {
+        UserType[] result = { UserType.USER, UserType.ARTIST, UserType.VENUE };
+        return result;
+    }
+
 }

@@ -23,8 +23,10 @@
 		<form:form modelAttribute="user" method="post" class="form-horizontal"
 			id="login-form">
 			<fieldset>
-				<gigs2go:inputField label="Username" name="username" />
-				<gigs2go:inputPasswordField label="Password" name="password" />
+				<spring:message code="username.tooltip.text" var="usernameTooltip"/>
+				<gigs2go:inputField label="Username" name="username" title="${usernameTooltip}"/>
+				<spring:message code="password.tooltip.text" var="passwordTooltip"/>
+				<gigs2go:inputPasswordField label="Password" name="password" title="${passwordTooltip}"/>
 				<div>
 					<button type="submit" formaction="login_check">${login_label}</button>
 				</div>

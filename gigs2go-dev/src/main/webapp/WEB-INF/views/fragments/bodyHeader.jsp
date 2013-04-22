@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<spring:url value="/resources/images/gigs2goImg1.png" var="banner" />
+<spring:url value="/resources/images/Mountains.png" var="banner" />
 <img src="${banner}" width="100%"/>
 
 <div class="navbar" style="width: 100%;">

@@ -9,10 +9,10 @@
 <body>
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
+		<jsp:include page="../../content/registerSuccess.jsp" />
 		<h2>Registration successful</h2>
-		<h3>Please login to continue</h3>
 		<p>Username : ${user.username}</p>
-		<p>Password : ${user.password}</p>
+		<p>Password : *****</p>
 		<form method="post">
 			<input type="submit" class="button" name="_eventId_continue"
 				value="Continue" />

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,4 +35,20 @@ public class SecurityLoginSuccessHandler extends SimpleUrlAuthenticationSuccessH
             super.onAuthenticationSuccess( request, response, auth );
         }
     }
+
+    protected String determineTargetUrl ( HttpServletRequest request, HttpServletResponse response ) {
+        String result = null;
+
+        log.debug( "Using custom success handler" );
+        SavedRequest savedRequest = (SavedRequest)request.getSession().getAttribute( "SPRING_SECURITY_SAVED_REQUEST" );
+        log.debug( "SavedRequest is {}", savedRequest );
+        if ( savedRequest != null ) {
+            result = savedRequest.getRedirectUrl();
+            log.debug( "Using {} as new URL", result );
+        } else {
+            result = super.determineTargetUrl( request, response );
+        }
+        return result;
+    }
+
 }

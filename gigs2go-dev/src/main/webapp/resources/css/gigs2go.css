@@ -149,12 +149,17 @@ div.dataTables_info {
 	padding: 9px 6px 6px 6px;
 }
 /*
- * Petclinic-like styling
+ * Gigs2Go styling - originally based on Petclinic styling
  */
 .container {
 	padding-top: 10px;
 	margin-left: 50px;
 	width: 800px;
+}
+
+.content {
+	color: #111;
+	background-color: #ccc;
 }
 
 .form-horizontal {

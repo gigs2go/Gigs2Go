@@ -6,6 +6,8 @@
 	<div class="container">
 		<jsp:include page="fragments/bodyHeader.jsp" />
 
+		<jsp:include page="../content/index.jsp" />
+
 		<jsp:include page="fragments/bodyFooter.jsp" />
 	</div>
 </body>

@@ -10,16 +10,21 @@
 <body>
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
+		<jsp:include page="../../content/register.jsp" />
 		<c:set var="label" value="Register" />
 		<h2>${label}</h2>
 		<form:form commandName="register" modelAttribute="user" method="post" class="form-horizontal"
 			id="register-form">
 			<fieldset>
-				<gigs2go:inputField label="Username" name="username" />
-				<gigs2go:inputPasswordField label="Password" name="password" />
+				<spring:message code="username.tooltip.text" var="usernameTooltip"/>
+				<gigs2go:inputField label="E-Mail" name="username" title="${usernameTooltip}"/>
+				<spring:message code="password.tooltip.text" var="passwordTooltip"/>
+				<gigs2go:inputPasswordField label="Password" name="password" title="${passwordTooltip}"/>
+				<spring:message code="check.password.tooltip.text" var="checkPasswordTooltip"/>
 				<gigs2go:inputPasswordField label="Re-enter Password"
-					name="checkPassword" />
-				<gigs2go:inputRadio label="User Type" name="userType" items="<%= com.gigs2go.model.entities.security.UserType.values() %>"/>
+					name="checkPassword" title="${checkPasswordTooltip}"/>
+				<spring:message code="usertype.tooltip.text" var="usertypeTooltip"/>
+				<gigs2go:inputRadio label="User Type" name="userType" items="<%= com.gigs2go.model.entities.security.UserType.getRegisterTypes() %>" title="${usertypeTooltip}"/>
 				<div>
 					<input type="submit" class="button" name="_eventId_submit" value="${label}"/>
 				</div>
