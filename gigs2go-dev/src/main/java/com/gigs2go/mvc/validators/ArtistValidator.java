@@ -46,10 +46,12 @@ public class ArtistValidator implements Validator {
     public void validate ( Object target, Errors errors ) {
         ValidationUtils.rejectIfEmptyOrWhitespace( errors, "name", "field.required" );
         ValidationUtils.rejectIfEmptyOrWhitespace( errors, "email.value", "field.required" );
-        Artist artist = (Artist)target;
-        log.debug( "Checking for Artist with name " + artist.getName() );
-        if ( repo.findByName( artist.getName() ).size() > 0 ) {
-            errors.rejectValue( "name", "artist.name.exists" );
+        Artist artist = (Artist)target; // Currentl
+        if ( !artist.isNew() ) {
+            log.debug( "Checking for Artist with name " + artist.getName() );
+            if ( repo.findByName( artist.getName() ).size() > 0 ) {
+                errors.rejectValue( "name", "artist.name.exists" );
+            }
         }
         try {
             errors.pushNestedPath( "email" );
