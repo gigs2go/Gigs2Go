@@ -31,7 +31,7 @@
 		<tr>
 			<td></td>
 			<td align="right"><img
-				src="<spring:url value="/resources/images/gigs2goLogo1.png" htmlEscape="true" />"
+				src="<spring:url value="/resources/images/Spring.png" htmlEscape="true" />"
 				alt="Powered by Spring" /></td>
 		</tr>
 	</table>
