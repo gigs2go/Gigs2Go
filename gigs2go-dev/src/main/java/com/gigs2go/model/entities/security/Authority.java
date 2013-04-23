@@ -60,4 +60,45 @@ public class Authority implements Serializable {
         this.authority = authority;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode () {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.authority == null) ? 0 : this.authority.hashCode());
+        result = prime * result + ((this.user == null) ? 0 : this.user.hashCode());
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals ( Object obj ) {
+        if ( this == obj )
+            return true;
+        if ( obj == null )
+            return false;
+        if ( getClass() != obj.getClass() )
+            return false;
+        Authority other = (Authority)obj;
+        if ( this.authority == null ) {
+            if ( other.authority != null )
+                return false;
+        } else if ( !this.authority.equals( other.authority ) )
+            return false;
+        if ( this.user == null ) {
+            if ( other.user != null )
+                return false;
+        } else if ( !this.user.equals( other.user ) )
+            return false;
+        return true;
+    }
+
 }

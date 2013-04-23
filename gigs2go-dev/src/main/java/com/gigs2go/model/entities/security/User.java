@@ -119,4 +119,39 @@ public class User implements Serializable {
         return "User [username=" + this.username + ", password=" + this.password + ", userType=" + this.userType + ", enabled=" + this.enabled + ", authorities=" + this.authorities + ", checkPassword=" + this.checkPassword + "]";
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode () {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((this.username == null) ? 0 : this.username.hashCode());
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals ( Object obj ) {
+        if ( this == obj )
+            return true;
+        if ( obj == null )
+            return false;
+        if ( getClass() != obj.getClass() )
+            return false;
+        User other = (User)obj;
+        if ( this.username == null ) {
+            if ( other.username != null )
+                return false;
+        } else if ( !this.username.equals( other.username ) )
+            return false;
+        return true;
+    }
+
 }

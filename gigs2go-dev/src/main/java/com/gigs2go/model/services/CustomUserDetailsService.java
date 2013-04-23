@@ -79,7 +79,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      *            the authorities for the user
      * @return a collection of {@link GrantedAuthority}
      */
-    public Collection<? extends GrantedAuthority> getAuthorities ( Set<Authority> authorities ) {
+    private Collection<? extends GrantedAuthority> getAuthorities ( Set<Authority> authorities ) {
         List<String> roles = new ArrayList<String>();
         for ( Authority authority : authorities ) {
             roles.add( authority.getAuthority() );
@@ -89,34 +89,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     /**
-     * Converts a numerical role to an equivalent list of roles
-     * 
-     * @param role
-     *            the numerical role
-     * @return list of roles as as a list of {@link String}
-     */
-    public List<String> getRoles ( Integer role ) {
-        List<String> roles = new ArrayList<String>();
-
-        if ( role.intValue() == 1 ) {
-            roles.add( "ROLE_USER" );
-            roles.add( "ROLE_ADMIN" );
-
-        } else if ( role.intValue() == 2 ) {
-            roles.add( "ROLE_USER" );
-        }
-
-        return roles;
-    }
-
-    /**
      * Wraps {@link String} roles to {@link SimpleGrantedAuthority} objects
      * 
      * @param roles
      *            {@link String} of roles
      * @return list of granted authorities
      */
-    public static List<GrantedAuthority> getGrantedAuthorities ( List<String> roles ) {
+    private static List<GrantedAuthority> getGrantedAuthorities ( List<String> roles ) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         for ( String role : roles ) {
             authorities.add( new SimpleGrantedAuthority( role ) );

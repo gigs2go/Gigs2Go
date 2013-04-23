@@ -5,6 +5,7 @@ package com.gigs2go.model.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,12 +65,16 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User save ( User user ) {
         log.debug( "Saving User {}", user );
-        user.getAuthorities().clear();
+        Set<Authority> authorities = user.getAuthorities();
         for ( String role : user.getUserType().getRoles() ) {
+            log.debug( "Checking role {} for user {}", role, user.getUsername() );
             Authority authority = new Authority();
             authority.setUser( user );
             authority.setAuthority( role );
-            user.getAuthorities().add( authority );
+            if ( !authorities.contains( authority ) ) {
+                log.debug( "Adding role {} for user {}", role, user.getUsername() );
+                user.getAuthorities().add( authority );
+            }
         }
         return repo.save( user );
     }
