@@ -1,9 +1,9 @@
-insert into users (username,password,enabled) values ('tim','password',1);
-insert into users (username,password,enabled) values ('jim','password',1);
+insert into users (id,username,password,userType,enabled) values (1,'tim@test.com','password','ADMIN',1);
+insert into users (id,username,password,userType,enabled) values (2,'jim@test.com','password','USER',1);
 
-insert into authorities (id,username,authority) values(1,'tim','ROLE_USER');
-insert into authorities (id,username,authority) values(2,'tim','ROLE_ADMIN');
-insert into authorities (id,username,authority) values(3,'jim','ROLE_USER');
+insert into authorities (id,username,authority,user_id) values(1,'tim@test.com','ROLE_USER',1);
+insert into authorities (id,username,authority,user_id) values(2,'tim@test.com','ROLE_ADMIN',1);
+insert into authorities (id,username,authority,user_id) values(3,'jim','ROLE_USER',2);
 
 insert into artists (id,name,email) values(1,'testartist1','testartist1@gigs2go.com');
 insert into artists (id,name,email) values(2,'testartist2','testartist2@gigs2go.com');

@@ -39,8 +39,9 @@ public class UserRepositoryTest extends AbstractRepoTest {
         user.setUsername( "fred" );
         user.setPassword( "password" );
         user = repo.save( user );
+        Long userId = user.getId();
         user = null;
-        user = repo.findOne( "fred" );
+        user = repo.findOne( userId );
         assertNotNull( user );
         assertEquals( "fred", user.getUsername() );
         assertEquals( "password", user.getPassword() );
@@ -49,9 +50,9 @@ public class UserRepositoryTest extends AbstractRepoTest {
     @Test
     public void testFindUserByUsername () {
         log.debug( "Finding user" );
-        User user = repo.findByUsername( "tim" );
+        User user = repo.findByUsername( "tim@test.com" );
         assertNotNull( user );
-        assertEquals( "tim", user.getUsername() );
+        assertEquals( "tim@test.com", user.getUsername() );
     }
 
 }

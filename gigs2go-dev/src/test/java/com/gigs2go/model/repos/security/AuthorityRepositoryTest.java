@@ -5,9 +5,10 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.slf4j.Logger; import org.slf4j.LoggerFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gigs2go.model.entities.security.Authority;
 import com.gigs2go.model.entities.security.User;
 import com.gigs2go.model.repos.AbstractRepoTest;
-import com.gigs2go.model.repos.security.AuthorityRepository;
-import com.gigs2go.model.repos.security.UserRepository;
 
 @RunWith( SpringJUnit4ClassRunner.class )
 @ContextConfiguration( value = "classpath:config/repo.xml" )
@@ -49,6 +48,7 @@ public class AuthorityRepositoryTest extends AbstractRepoTest {
         log.debug( "Creating Authority" );
         Authority authority = new Authority();
         authority.setUser( user );
+        authority.setUsername( user.getUsername() );
         authority.setAuthority( "ROLE_ADMIN" );
         authority = repo.save( authority );
         List<Authority> authorities = repo.findByUser( user );
@@ -60,11 +60,11 @@ public class AuthorityRepositoryTest extends AbstractRepoTest {
     @Test
     public void testFindByUsername () {
         log.debug( "Finding authorities" );
-        List<Authority> authorities = repo.findByUserUsername( "tim" );
+        List<Authority> authorities = repo.findByUsername( "tim@test.com" );
         assertNotNull( authorities );
         assertEquals( 2, authorities.size() );
         Authority authority = authorities.get( 0 );
-        assertEquals( "tim", authority.getUser().getUsername() );
+        assertEquals( "tim@test.com", authority.getUser().getUsername() );
     }
 
 }

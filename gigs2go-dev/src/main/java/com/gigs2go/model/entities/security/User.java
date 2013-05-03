@@ -1,6 +1,5 @@
 package com.gigs2go.model.entities.security;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,16 +17,18 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gigs2go.model.entities.BaseEntity;
+
 @Entity
 @Table( name = "users" )
-public class User implements Serializable {
+public class User extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @Transient
     private Logger log = LoggerFactory.getLogger( User.class );
 
-    @Id
     @Column( updatable = false, nullable = false, length = 50 )
+    @NotNull
     private String username = "";
 
     @Column( updatable = false, nullable = false, length = 50 )
